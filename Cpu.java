@@ -26,7 +26,8 @@ public class CPU {
         System.out.printf("P%s STARTED\n",o.pid); 
           
         while (aux<=o.tempoExecucao){             
-            System.out.printf("P%s instruction %s \n",o.pid,aux); 
+            System.out.printf("P%s instruction %s \n",o.pid,aux);
+            //Fazer um sleep?
             aux++; 
         } 
           
