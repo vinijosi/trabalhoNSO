@@ -1,55 +1,68 @@
 package br.unb.nso.TrabalhoNSO;
 
-import java.util.List;
 
-public class Despachante {
-
-	Escalonador escalonador = new Escalonador();
-	Memoria memoria = new Memoria();
-	CPU cpu = new CPU();
-	Recursos recursos = new Recursos();
+public class Memoria {
 
 
-	public void entregaEscalonador(List<Processo> global) {
-		for (int i=0;i < global.size();i++){
-			Processo processo = global.get(i);
-			if (temRecurso(processo)){
-				memoria.alocaMemoria(processo);// Criar codigo do metodo
-				recursos.alocaRecursos(processo);//Criar codigo do metodo
+	private static int MEMCPU = 64;
+	private static int MEMUSER	 = 1024 - MEMCPU;	
 
-				escalonador.incluiComoPronto(processo);
-			} else {
-				escalonador.bloquearProcesso(processo);
-			}
+	private int[] memoriaCPU = new int[MEMCPU];
+	private int[] memoriaUsuario = new int[MEMUSER];
+
+	public Memoria(){
+		for (int i = 0; i < MEMCPU; i++) {
+			memoriaCPU[i] = 0;
 		}
+		for (int i = 0; i < MEMUSER; i++) {
+			memoriaUsuario[i] = 0;
+		}
+
 	}
 
-	private boolean temRecurso(Processo processo) {
-
-		if (memoria.memoriaLivre(processo.prioridade, processo.blocosMemoria) >= processo.blocosMemoria 
-				/* && Incluir todos os teste de Recursos*/){
-			return true;
-		} else
-
-			return false;
-	}
-
-	public boolean temProcessos() {
-		if (escalonador.qtdeProntos() > 0){
-			return true;
+	public int memoriaLivre(int prioridade, int blocosMemoria) {
+		if (prioridade == 0){
+			//return MEMCPU;
+			return blocosContiguosCpu(memoriaCPU, blocosMemoria);
 		} else {
-			return false;			
+			return MEMUSER;
+			//blocosContiguosUsuario(memoriaUsuario, blocosMemoria);
 		}
 
 	}
 
-	public void despachaProximo() throws InterruptedException {
-		try{
-			cpu.processar(escalonador.escalonar());			
-		} catch (Exception e) {
-			//cpu.cpuTime.incrementa();
+
+	/*
+	 * Verifica se ha memoria livre na quantidade desejada 
+	 * 
+	 * ********************Implementar para blocos continuos
+	 * */
+	private int blocosContiguosCpu(int[] memoriaTipo, int blocosNecessarios ) {
+		int blocosLivres = 0;
+		for(int i = 0; i < memoriaTipo.length; i++){
+			if (memoriaTipo[i] == 0){
+				blocosLivres++;
+			}
+
+		}
+		return blocosLivres;
+	}
+
+	public void alocaMemoria(Processo processo) {
+		int aux = processo.blocosMemoria;
+		for (int i = 0; i<MEMCPU; i++){
+			if ((aux > 0) && (memoriaCPU[i]==0)){
+
+				memoriaCPU[i] = processo.pid;
+				aux--;
+				System.out.printf("\n Posicao da Memoria Alocada memoriaCPU[%s]", i);
+			}			
+
 		}
 
-
 	}
+
 }
+
+
+
