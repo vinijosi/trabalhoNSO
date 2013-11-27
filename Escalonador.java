@@ -24,10 +24,12 @@ public class Escalonador {
 		return this.processosProntos.size();
 	}
 	public void incluiComoPronto(Processo novoProcesso) {
-		this.processosProntos.add(novoProcesso);		
+		this.processosProntos.add(novoProcesso);
+		System.out.println("Incluido como Pronto\n");
 	}
 	public void bloquearProcesso(Processo novoProcesso) {
 		this.processosBloqueados.add(novoProcesso);
+		System.out.println("Processo Bloqueado\n");
 		
 	}
 }
