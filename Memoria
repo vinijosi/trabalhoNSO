@@ -17,6 +17,27 @@ public class Memoria {
 				memoriausuario[i] = 0;
 			}
 
-			
+	}
+
+	public int memoriaLivre(int prioridade, int blocosMemoria) {
+		if (prioridade == 0){
+			blocosContiguosCpu(memoriaCPU, blocosMemoria);
+		} else {
+			blocosContiguosUsuario(memoriaUsuario, blocosMemoria);
+		}
+		return 0;
+	}
+
+	private void blocosContiguosCpu(int[] memoriaTipo, int blocosNecessarios ) {
+		int estado = 0;
+		int contaBlocos = 0;
+		while (contaBlocos < blocosNecessarios){
+			for (int i = 0; i < MEMCPU; i++){
+				if (memoriaTipo[i] == estado){
+					contaBlocos++;
+				}
+			}
+		}
+
 	}
 }
