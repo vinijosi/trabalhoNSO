@@ -27,8 +27,14 @@ public class Escalonador {
 		this.processosProntos.add(novoProcesso);
 		System.out.println("Incluido como Pronto\n");
 	}
+/*
+	 * Insere o processo na fila de bloqueados
+	 * */
 	public void bloquearProcesso(Processo novoProcesso) {
 		this.processosBloqueados.add(novoProcesso);
+		novoProcesso.envelhece();
+		//se o processo estiver como pronto
+		//processosProntos.remove(novoProcesso);
 		System.out.println("Processo Bloqueado\n");
 		
 	}
