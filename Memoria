@@ -28,16 +28,19 @@ public class Memoria {
 		return 0;
 	}
 
-	private void blocosContiguosCpu(int[] memoriaTipo, int blocosNecessarios ) {
-		int estado = 0;
-		int contaBlocos = 0;
-		while (contaBlocos < blocosNecessarios){
-			for (int i = 0; i < MEMCPU; i++){
-				if (memoriaTipo[i] == estado){
-					contaBlocos++;
-				}
-			}
-		}
-
-	}
+	//	private int blocosContiguosCpu(int[] memoriaTipo, int blocosNecessarios ) {
+	//		int estado = 0;
+	//		int contaBlocos = 0;
+	//
+	//		while (contaBlocos < blocosNecessarios){
+	//
+	//			for (int i = 0; i < MEMCPU; i++){
+	//
+	//				if (memoriaTipo[i] == estado){
+	//					contaBlocos++;
+	//
+	//				}
+	//			}
+	//		}
+	//		return contaBlocos;
 }
