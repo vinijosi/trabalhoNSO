@@ -26,6 +26,13 @@ public class Main {
 		 * */ 
 
 		Despachante despachante = new Despachante();
+	
+		while (despachante.temProcessos()){
+			
+			despachante.despachaProximo();
+		
+		}
+		
 		
 	}
 
@@ -107,10 +114,6 @@ public class Main {
 		Collections.sort(lista);		
 		return lista;
 	}
-
-
-
-
 
 }
 
