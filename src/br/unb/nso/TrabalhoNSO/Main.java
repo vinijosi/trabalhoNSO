@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
+//import java.util.Iterator;
 //import java.util.LinkedList;
 import java.util.List;
 
@@ -16,27 +16,28 @@ public class Main {
 
 
 
-		System.out.print("Pseudo SO - Vinicius & Vinicius");
+		System.out.print("Pseudo SO - Vinicius & Vinicius\n");
 
 		List<Processo> global = leArquivo();
-		
+
 		/*
 		 * 2.1.1 - Despachante: Processo principal.
 		 * Será responsável pela criação dos Processos.
 		 * */ 
 
 		Despachante despachante = new Despachante();
-	
+
+		despachante.entregaEscalonador(global);
+
 		while (despachante.temProcessos()){
 			
 			despachante.despachaProximo();
 		
 		}
-		
-		
+
 	}
 
-	
+
 	/*
 	 * Lendo do Arquivo e salvando em uma fila geral
 	 * 
@@ -45,8 +46,6 @@ public class Main {
 
 		//Dinamico implementar funcao para ler o arquivo 
 		String endereco = "processos.txt";
-		//Sera que enxerga?
-		//sera que ele ta enxergando?
 		List<Processo> lista = new ArrayList<Processo>() ;
 
 		/*
