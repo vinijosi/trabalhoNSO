@@ -20,7 +20,7 @@ public class Memoria {
 
 	}
 
-	public int memoriaLivre( Processo o) {
+	public int memoriaLivre(Processo o) {
 		if (o.prioridade == 0){
 			//return MEMCPU;
 			return blocosContiguosCpu(memoriaCPU, o);
@@ -65,7 +65,7 @@ public class Memoria {
 
 				memoriaCPU[i] = processo.pid;
 				aux--;
-				System.out.printf("\n Posicao da Memoria Alocada memoriaCPU[%s]", i);
+				System.out.printf("\n Posicao da Memoria Alocada memoriaCPU[%s]", memoriaCPU[i]);
 			}			
 
 		}
