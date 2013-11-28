@@ -26,7 +26,7 @@ public class Despachante {
 
 	private boolean temRecurso(Processo processo) {
 
-		if (memoria.memoriaLivre(processo.prioridade, processo.blocosMemoria) >= processo.blocosMemoria 
+		if (memoria.memoriaLivre(processo) >= processo.blocosMemoria 
 				/* && Incluir todos os teste de Recursos*/){
 			return true;
 		} else

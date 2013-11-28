@@ -20,10 +20,10 @@ public class Memoria {
 
 	}
 
-	public int memoriaLivre(int prioridade, int blocosMemoria) {
-		if (prioridade == 0){
+	public int memoriaLivre( Processo o) {
+		if (o.prioridade == 0){
 			//return MEMCPU;
-			return blocosContiguosCpu(memoriaCPU, blocosMemoria);
+			return blocosContiguosCpu(memoriaCPU, o);
 		} else {
 			return MEMUSER;
 			//blocosContiguosUsuario(memoriaUsuario, blocosMemoria);
