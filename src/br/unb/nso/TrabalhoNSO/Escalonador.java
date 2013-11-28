@@ -17,17 +17,22 @@ public class Escalonador {
 		
 	}
 	public Processo escalonar(){
-		return processosProntos.get(0);	
+		Processo retorno = processosProntos.get(0);
+		
+		processosProntos.remove(0);
+		return retorno;
 		
 	}
 	int qtdeProntos(){
 		return this.processosProntos.size();
 	}
 	public void incluiComoPronto(Processo novoProcesso) {
+		
 		this.processosProntos.add(novoProcesso);
 		System.out.println("Incluido como Pronto\n");
 	}
-/*
+	
+	/*
 	 * Insere o processo na fila de bloqueados
 	 * */
 	public void bloquearProcesso(Processo novoProcesso) {
