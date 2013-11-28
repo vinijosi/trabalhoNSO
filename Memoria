@@ -37,11 +37,21 @@ public class Memoria {
 	 * 
 	 * ********************Implementar para blocos continuos
 	 * */
-	private int blocosContiguosCpu(int[] memoriaTipo, int blocosNecessarios ) {
+	private int blocosContiguosCpu(int[] memoriaTipo,Processo o) {
 		int blocosLivres = 0;
 		for(int i = 0; i < memoriaTipo.length; i++){
 			if (memoriaTipo[i] == 0){
-				blocosLivres++;
+				blocosLivres++; 
+				if (blocosLivres == o.blocosMemoria){
+					int j = (i - o.blocosMemoria);
+					for ( int h = j; h < i ; h++){
+						memoriaTipo[h] = o.pid;
+					}
+					return i - o.blocosMemoria;
+					
+				}
+			} else {
+				blocosLivres = 0;
 			}
 
 		}
