@@ -8,3 +8,5 @@ public class Clock {
 		this.relogio++;
 	}
 }
+
+//teste
