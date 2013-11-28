@@ -45,6 +45,8 @@ public class Main {
 
 		//Dinamico implementar funcao para ler o arquivo 
 		String endereco = "processos.txt";
+		//Sera que enxerga?
+		//sera que ele ta enxergando?
 		List<Processo> lista = new ArrayList<Processo>() ;
 
 		/*
