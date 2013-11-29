@@ -56,7 +56,7 @@ public class LeArquivo {
 				//Inserimos o processo na fila Geral para posterior uso
 				
 				Processo lido = new Processo();
-				lido.insereDados(lido, pid, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
+				lido.insereDados(lido, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
 				lista.add(lido);
 				pid = pid + 1;
 				linha = lerArq.readLine(); // le as proximas linhas do arquivo ate a ultima				

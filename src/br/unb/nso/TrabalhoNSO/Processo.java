@@ -17,7 +17,6 @@
 		
 		public void insereDados(
 				Processo o,
-				int pid,
 				int tempoInicializacao, 
 				int prioridade, 
 				int tempoExecucao,
@@ -26,7 +25,6 @@
 				int scanner, 
 				int modem, 
 				int disco) {
-			o.pid = pid;
 			o.tempoInicializacao = tempoInicializacao;
 			o.prioridade = prioridade;
 			o.tempoExecucao = tempoExecucao;

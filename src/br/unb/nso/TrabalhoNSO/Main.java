@@ -1,5 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
+import java.util.Iterator;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -51,7 +52,6 @@ public class Main {
 		 * */ 
 
 		try {
-			int pid = 1;
 			FileReader arq = new FileReader(endereco);
 			BufferedReader lerArq = new BufferedReader(arq);
 			String linha = lerArq.readLine(); 
@@ -60,7 +60,7 @@ public class Main {
 
 				//Remover as linhas de impreessao deste metodo !!!!!
 
-				System.out.printf("linha %s: %s\n",pid,  linha);
+				System.out.printf("linha %s: \n",  linha);
 
 				String campos[] = linha.split(",");
 
@@ -74,7 +74,6 @@ public class Main {
 				int disco = Integer.parseInt(campos[7]); // campo3
 
 				System.out.printf(
-						"Pid: %s\n" +
 								"Tempo de Inicializacao: %s\n" +
 								"Prioridade do Processo: %s\n" +
 								"Tempo de Execucao: %s\n" +
@@ -83,7 +82,7 @@ public class Main {
 								"Scanner: %s\n" +
 								"Modem: %s\n" +
 								"Disco: %s\n"
-								, pid, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
+								, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
 
 				//TimeUnit.MILLISECONDS.sleep(1000);
 
@@ -93,9 +92,8 @@ public class Main {
 				//Inserimos o processo na fila Geral para posterior uso
 
 				Processo lido = new Processo();
-				lido.insereDados(lido, pid, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
+				lido.insereDados(lido, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
 				lista.add(lido);
-				pid = pid + 1;
 				linha = lerArq.readLine(); // le as proximas linhas do arquivo ate a ultima				
 			}
 
@@ -108,8 +106,20 @@ public class Main {
 		/*
 		 * Ordenando a lista global por tempo e em seguida por prioridade
 		 * */
+		int cont = 1;
 
 		Collections.sort(lista);		
+		Processo no = new Processo();
+		Iterator<Processo> noTemporal = lista.iterator();		
+		no = lista.get(0);
+		noTemporal = lista.iterator();
+		
+		while(noTemporal.hasNext()){
+			no = noTemporal.next();
+			no.pid = cont;
+			cont++;	
+		}
+		
 		return lista;
 	}
 
