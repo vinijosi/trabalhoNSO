@@ -72,6 +72,11 @@ public class Memoria {
 
 	}
 
+	public static void liberaMemoria(Processo o) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 
