@@ -29,7 +29,7 @@ public class Escalonador {
 	public void incluiComoPronto(Processo novoProcesso) {
 		
 		this.processosProntos.add(novoProcesso);
-		System.out.println("Incluido como Pronto\n");
+		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);
 	}
 	
 	/*
