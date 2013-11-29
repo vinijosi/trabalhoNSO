@@ -14,9 +14,6 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		//deu certo agora?
-
-
 
 		System.out.print("Pseudo SO - Vinicius & Vinicius\n");
 
