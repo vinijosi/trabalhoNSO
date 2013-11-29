@@ -38,8 +38,11 @@ public class CPU {
 			
 		}
 		
-		System.out.printf("P%s return SIGINT\n\n",o.pid);		
+		System.out.printf("P%s return SIGINT\n\n",o.pid);
+		Recursos.liberaRecursos(o);
+		Memoria.liberaMemoria(o);
 		
 	}
+
 	
 }
