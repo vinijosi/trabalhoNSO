@@ -10,7 +10,10 @@ public class Recursos {
 		// TODO Auto-generated method stub
 		
 	}
-
+	public static void liberaRecursos(Processo o) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
