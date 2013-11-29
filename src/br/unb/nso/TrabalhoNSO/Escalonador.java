@@ -6,6 +6,11 @@ import java.util.List;
 
 public class Escalonador {
 
+	
+	private List<Processo> processoTempoReal;
+	private List<Processo> processoUsuario1;
+	private List<Processo> processoUsuario2;
+	private List<Processo> processoUsuario3;
 	private List<Processo> processosProntos;
 	private List<Processo> processosBloqueados;
 	

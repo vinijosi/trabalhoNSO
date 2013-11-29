@@ -3,11 +3,9 @@ package br.unb.nso.TrabalhoNSO;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-//import java.util.Iterator;
-//import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedList;
+
 
 
 public class Main {
@@ -17,7 +15,7 @@ public class Main {
 
 		System.out.print("Pseudo SO - Vinicius & Vinicius\n");
 
-		List<Processo> global = leArquivo();
+		LinkedList<Processo> global = leArquivo();
 
 		/*
 		 * 2.1.1 - Despachante: Processo principal.
@@ -41,11 +39,11 @@ public class Main {
 	 * Lendo do Arquivo e salvando em uma fila geral
 	 * 
 	 * */ 
-	private static List<Processo> leArquivo() {
+	private static LinkedList<Processo> leArquivo() {
 
 		//Dinamico implementar funcao para ler o arquivo 
 		String endereco = "processos.txt";
-		List<Processo> lista = new ArrayList<Processo>() ;
+		LinkedList<Processo> lista = new LinkedList<Processo>() ;
 
 		/*
 		 * Le cada linha do aquivo e cria uma instancia de processo com o conteudo.
