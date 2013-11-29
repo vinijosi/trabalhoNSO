@@ -57,7 +57,7 @@
 			try{
 				return true;
 			} catch (Exception e){
-				System.out.println("Não existem recursos Disponiveis");			
+				System.out.println("Nao existem recursos Disponiveis");			
 			}
 			// TODO Auto-generated method stub
 			return true;
