@@ -60,14 +60,28 @@ public class Memoria {
 
 	public void alocaMemoria(Processo processo) {
 		int aux = processo.blocosMemoria;
-		for (int i = 0; i<MEMCPU; i++){
-			if ((aux > 0) && (memoriaCPU[i]==0)){
+		if (processo.pid == 0) {
+			System.out.printf("PROCESSO DE CPU PID %S",processo.pid);
+			
+			for (int i = 0; i<MEMCPU; i++){
+				if ((aux > 0) && (memoriaCPU[i]==0)){
 
-				memoriaCPU[i] = processo.pid;
-				aux--;
-				System.out.printf("\n Posicao da Memoria Alocada memoriaCPU[%s]", memoriaCPU[i]);
-			}			
+					memoriaCPU[i] = processo.pid;
+					aux--;
+					System.out.printf("Posicao %s da Memoria de CPU Alocada para processo (%s)\n",i, memoriaCPU[i]);
+				}			
 
+			}
+		} else {
+			for (int i = 0; i<MEMUSER; i++){
+				if ((aux > 0) && (memoriaUsuario[i]==0)){
+
+					memoriaUsuario[i] = processo.pid;
+					aux--;
+					System.out.printf("Posicao %s da Memoria de Usuario Alocada para processo (%s)\n",i, memoriaUsuario[i]);
+				}			
+
+			}
 		}
 
 	}
