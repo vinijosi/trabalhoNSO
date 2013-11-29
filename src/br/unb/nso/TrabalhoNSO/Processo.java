@@ -65,7 +65,9 @@
 	
 		public void envelhece() {
 			this.idade++;
-			
+			if(this.prioridade>1){
+				this.prioridade--;
+			}
 		}
 	
 		
