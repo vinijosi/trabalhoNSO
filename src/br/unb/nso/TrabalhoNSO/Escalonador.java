@@ -33,8 +33,13 @@ public class Escalonador {
 		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);
 	}
 	
-	/*
-	 * Insere o processo na fila de bloqueados
+	public void incluiComoBloqueado(Processo novoProcesso){
+		this.processosBloqueados.add(novoProcesso);
+		System.out.printf("\nProcesso %s Incluido como Bloqueado\n", novoProcesso.pid);
+	}
+	
+	
+	 /* Insere o processo na fila de bloqueados
 	 * */
 	
 	public void bloquearProcesso(Processo novoProcesso) {
