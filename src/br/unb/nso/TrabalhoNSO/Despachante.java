@@ -13,18 +13,22 @@ public class Despachante {
 	public void entregaEscalonador(List<Processo> global) {
 		for (int i=0;i < global.size();i++){
 			Processo processo = global.get(i);
-			if (temRecurso(processo)){
-				memoria.alocaMemoria(processo);// Criar codigo do metodo
-				recursos.alocaRecursos(processo);//Criar codigo do metodo
-
+			if (temRecursos(processo)){
+				alocaRecursos(processo);
 				escalonador.incluiComoPronto(processo);
+
 			} else {
 				escalonador.bloquearProcesso(processo);
 			}
 		}
 	}
 
-	private boolean temRecurso(Processo processo) {
+	private void alocaRecursos(Processo processo) {
+		memoria.alocaMemoria(processo);
+		recursos.alocaRecursos(processo);//Criar codigo do metodo
+	}
+
+	private boolean temRecursos(Processo processo) {
 
 		if (memoria.memoriaLivre(processo) >= processo.blocosMemoria 
 				/* && Incluir todos os teste de Recursos*/){
