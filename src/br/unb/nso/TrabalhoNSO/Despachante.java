@@ -25,7 +25,7 @@ public class Despachante {
 
 	private void alocaRecursos(Processo processo) {
 		memoria.alocaMemoria(processo);
-		recursos.alocaRecursos(processo);//Criar codigo do metodo
+		recursos.alocaRecursos(processo);
 	}
 
 	private boolean temRecursos(Processo processo) {
