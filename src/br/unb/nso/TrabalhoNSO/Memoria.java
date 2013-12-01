@@ -18,13 +18,16 @@ public class Memoria {
 		}
 
 	}
-
+	/*
+	 * Retorna true se existirem blocos contiguos suficientes para 
+	 * aquele processo.
+	 *   
+	 * */
 	public boolean memoriaLivre(Processo o) {
 		if (o.prioridade == 0){
 			return existemBlocosContiguosLivres(memoriaCPU, o);
 		} else {
 			return existemBlocosContiguosLivres(memoriaUsuario, o);
-			//blocosContiguosUsuario(memoriaUsuario, blocosMemoria);
 		}
 
 	}
@@ -45,105 +48,67 @@ public class Memoria {
 	}
 
 
-	//	private int blocosContiguosLivres(int[] memoriaTipo,Processo o) {
-	//		int blocosLivres = 0;
-	//					
-	//		for(int i = 0; i < memoriaTipo.length; i++){
-	//			if ((memoriaTipo[i] == 0)&&(blocosLivres == o.blocosMemoria)){
-	//				blocosLivres++; 
-	//					//					int j = (i - o.blocosMemoria);
-	//					//					for ( int h = j; h < i ; h++){
-	//					//						memoriaTipo[h] = o.pid;
-	//					//					}
-	//				System.out.printf("Primeiro Bloco Continuo Livre: %s\n", (i - o.blocosMemoria));
-	//			} else {
-	//				blocosLivres = 0;
-	//			}
-	//			if (blocosLivres == o.blocosMemoria){
-	//				return blocosLivres;
-	//				//break;
-	//			}
-	//		}
-	//		return 0;	
-	//	}
-
-	//	public void alocaMemoria(Processo processo) {
-	//		int aux = processo.blocosMemoria;
-	//		if (processo.pid == 0) {
-	//			System.out.printf("PROCESSO DE CPU PID %S",processo.pid);
-	//
-	//			for (int i = 0; i<MEMCPU; i++){
-	//				if ((aux > 0) && (memoriaCPU[i]==0)){
-	//
-	//					memoriaCPU[i] = processo.pid;
-	//					aux--;
-	//					System.out.printf("Posicao %s da Memoria de CPU Alocada para processo (%s)\n",i, memoriaCPU[i]);
-	//				}			
-	//
-	//			}
-	//		} else {
-	//			for (int i = 0; i<MEMUSER; i++){
-	//				if ((aux > 0) && (memoriaUsuario[i]==0)){
-	//
-	//					memoriaUsuario[i] = processo.pid;
-	//					aux--;
-	//					System.out.printf("Posicao %s da Memoria de Usuario Alocada para processo (%s)\n",i, memoriaUsuario[i]);
-	//				}			
-	//
-	//			}
-	//		}
-	//
-	//	}
+	/*
+	 * Aloca na memoria a quantidade de blocos necessarios
+	 * para o processo 
+	 * */
 
 	public void alocaMemoria(Processo processo) {
 		int blocosParaAlocar = processo.blocosMemoria;
 		if (processo.pid == 0) {
-			//int primeiroContinuioLivre = blocosContiguosLivres(memoriaCPU, processo);
-			for (int i = 0/*primeiroContinuioLivre*/; i < MEMCPU; i++){
+			System.out.printf("Blocos: ");
+			for (int i = 0; i < MEMCPU; i++){
 				if ((blocosParaAlocar > 0) && (memoriaCPU[i]==0)){
 
 					memoriaCPU[i] = processo.pid;
 					blocosParaAlocar--;
 					processo.offsetMemoria = (i - processo.blocosMemoria);
-					System.out.printf("Posicao %s da Memoria de %s Alocada para processo (%s)\n",i, memoriaCPU.getClass(), memoriaCPU[i]);
+
+					/* 
+					 * DELETAR ESTA SAIDA
+					 **/
+
+					System.out.printf("%s, ", i);
+
 				}
+				System.out.printf("da memoria da CPU alocados\n");
 			}
 
 		} else {
-			//int primeiroContinuioLivre = blocosContiguosLivres(memoriaUsuario, processo);
-			for (int i = 0 /*primeiroContinuioLivre*/; i < MEMUSER; i++){
+			System.out.printf("Blocos: ");
+			for (int i = 0; i < MEMUSER; i++){
 				if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
-
 					memoriaUsuario[i] = processo.pid;
 					blocosParaAlocar--;
 					processo.offsetMemoria = (i - processo.blocosMemoria);
-					System.out.printf("Posicao %s da Memoria de %s Alocada para processo (%s)\n",i, memoriaUsuario.getClass(), memoriaUsuario[i]);
+					System.out.printf("%s, ", i);
 				}
 			}
+			System.out.printf("da Memoria de Usuário alocados\n");
 
 		}
 	}
 
 	public static  void liberaMemoria(Processo processo) {
-		System.out.printf("Tentando liberar memoria\n ");
 		if (processo.prioridade == 0) {
-			System.out.printf("MEMORIA CPU\n ");
+			System.out.printf("Blocos: ");
 			for (int i = 0; i < MEMCPU; i++){
-				System.out.printf("\nValor na Memoria: %s\n",memoriaCPU[i]);
+				//System.out.printf("\nValor na Memoria: %s\n",memoriaCPU[i]);
 				if (memoriaCPU[i]==processo.pid){
-					System.out.printf("\nPosicao %s da Memoria Liberada\n",i);
+					System.out.printf("%s, ",i);
 					memoriaCPU[i] = 0;
 				}
-
 			}
+			System.out.printf("da Memoria de CPU liberados\n");
 		} else {
+			System.out.printf("Blocos: ");
 			for (int i = 0; i < MEMUSER; i++){
-				//System.out.printf("MEMORIA USUARIO %s \n ", memoriaUsuario[i]);
 				if (memoriaUsuario[i]==processo.pid){
 					memoriaUsuario[i] = 0;
-					System.out.printf("\nPosicao %s da Memoria Liberada\n",i);					
+					System.out.printf("%s ",i);					
 				}
 			}
+			System.out.printf("da Memoria de Usuário liberados\n");
 
 		}
 	}
