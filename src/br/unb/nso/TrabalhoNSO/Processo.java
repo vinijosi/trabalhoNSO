@@ -14,6 +14,7 @@
 		public int disco;
 		public int idade;
 		public int tempoNaCpu;
+		public int offsetMemoria;
 		
 		public void insereDados(
 				Processo o,
