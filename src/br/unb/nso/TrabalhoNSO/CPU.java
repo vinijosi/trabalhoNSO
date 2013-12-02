@@ -1,6 +1,5 @@
 package br.unb.nso.TrabalhoNSO;
 
-import java.util.concurrent.TimeUnit;
 
 public class CPU {
 
@@ -39,7 +38,11 @@ public class CPU {
 		
 		Recursos.liberaRecursos(o);
 		Memoria.liberaMemoria(o);
+<<<<<<< HEAD
 		TimeUnit.MILLISECONDS.sleep(10);
+=======
+		//TimeUnit.MILLISECONDS.sleep(1000);
+>>>>>>> 767530cbb2fe6dda09b1ec7c94d9a067e3fc3bc4
 
 	}
 

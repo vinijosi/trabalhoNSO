@@ -81,7 +81,7 @@ public class Memoria {
 				if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
 					memoriaUsuario[i] = processo.pid;
 					blocosParaAlocar--;
-					processo.offsetMemoria = (i - processo.blocosMemoria);
+					processo.offsetMemoria = (i - processo.blocosMemoria + 1);
 					System.out.printf("%s, ", i);
 				}
 			}
