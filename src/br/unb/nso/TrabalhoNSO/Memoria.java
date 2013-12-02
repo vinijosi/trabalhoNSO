@@ -37,12 +37,13 @@ public class Memoria {
 	private boolean existemBlocosContiguosLivres(int[] memoriaTipo, Processo o) {
 		int blocosLivres = 0;
 		for (int i = 0; i < memoriaTipo.length; i++){
+			if (memoriaTipo[i] == 0 && blocosLivres == o.blocosMemoria){
+				return true;
+			}
 			if (memoriaTipo[i] == 0 && blocosLivres < o.blocosMemoria){
 				blocosLivres++;
 			}
-			if (blocosLivres == o.blocosMemoria){
-				return true;
-			}
+			
 		}
 		return false;
 	}
@@ -93,7 +94,6 @@ public class Memoria {
 		if (processo.prioridade == 0) {
 			System.out.printf("Blocos: ");
 			for (int i = 0; i < MEMCPU; i++){
-				//System.out.printf("\nValor na Memoria: %s\n",memoriaCPU[i]);
 				if (memoriaCPU[i]==processo.pid){
 					System.out.printf("%s, ",i);
 					memoriaCPU[i] = 0;
@@ -111,5 +111,7 @@ public class Memoria {
 			System.out.printf("da Memoria de Usuário liberados\n");
 
 		}
+		// Criar metodo que chame o Despachante para incluir como pronto processos
+		//bloqueados
 	}
 }
