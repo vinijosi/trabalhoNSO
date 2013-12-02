@@ -1,20 +1,19 @@
 package br.unb.nso.TrabalhoNSO;
 
+import java.util.concurrent.TimeUnit;
+
 public class CPU {
 
 
 	Clock cpuTime = new Clock();
-	//	int cont;
-	//	int semaforo;
-	//	int aux;
+
 	Processo processoPreemptado;
 
 	public void processar(Processo o) throws InterruptedException{
 
-		//		aux = 1;
-		System.out.printf("PID: %s \n",o.pid);
-		//		System.out.println("offset: 0 ");
+		System.out.printf("\nPID: %s \n",o.pid);
 		System.out.printf("blocks: %s \n", o.blocosMemoria);
+		System.out.printf("Offset Memoria: %s \n", o.offsetMemoria);
 		System.out.printf("priority: %s \n",o.prioridade);
 		System.out.printf("time: %s \n",o.tempoExecucao);
 		System.out.printf("printers: %s  \n",o.impressora);
@@ -32,15 +31,15 @@ public class CPU {
 		while (o.tempoNaCpu < o.tempoExecucao){			
 			System.out.printf("P%s instruction %s \n",o.pid,o.tempoNaCpu+1);
 			o.tempoNaCpu++;
-
-			//TimeUnit.MILLISECONDS.sleep(100);
 			this.cpuTime.incrementa();
-
+			TimeUnit.MILLISECONDS.sleep(100);
 		}
 
-		System.out.printf("P%s return SIGINT\n\n",o.pid);
+		System.out.printf("P%s return SIGINT\n",o.pid);
+		
 		Recursos.liberaRecursos(o);
 		Memoria.liberaMemoria(o);
+		TimeUnit.MILLISECONDS.sleep(1000);
 
 	}
 
