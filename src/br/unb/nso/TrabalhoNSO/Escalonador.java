@@ -42,7 +42,6 @@ public class Escalonador {
 	 /* Insere o processo na fila de bloqueados
 	 * */
 	
-<<<<<<< HEAD
 //	public void bloquearProcesso(Processo novoProcesso) {
 //		this.processosBloqueados.add(novoProcesso);
 //		novoProcesso.envelhece();
@@ -50,11 +49,11 @@ public class Escalonador {
 //		//processosProntos.remove(novoProcesso);
 //		System.out.println("Processo Bloqueado\n");
 //	}
-}
-=======
+
+
 	public void bloquearProcesso(Processo novoProcesso) {
 		this.processosBloqueados.add(novoProcesso);
 		System.out.println("Processo Bloqueado\n");
 	}
 }
->>>>>>> 767530cbb2fe6dda09b1ec7c94d9a067e3fc3bc4
+
