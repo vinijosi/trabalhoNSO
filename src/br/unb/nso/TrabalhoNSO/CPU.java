@@ -39,7 +39,7 @@ public class CPU {
 		
 		Recursos.liberaRecursos(o);
 		Memoria.liberaMemoria(o);
-		TimeUnit.MILLISECONDS.sleep(1000);
+		//TimeUnit.MILLISECONDS.sleep(1000);
 
 	}
 
