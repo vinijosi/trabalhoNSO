@@ -14,6 +14,10 @@ public class Escalonador {
 	private List<Processo> processosBloqueados;
 		
 	public Escalonador(){	
+		this.processoTempoReal = new ArrayList<Processo>();
+		this.processoUsuario1 = new ArrayList<Processo>();
+		this.processoUsuario2 = new ArrayList<Processo>();
+		this.processoUsuario3 = new ArrayList<Processo>();
 		this.processosProntos = new ArrayList<Processo>();
 		this.processosBloqueados = new ArrayList<Processo>();
 	}
