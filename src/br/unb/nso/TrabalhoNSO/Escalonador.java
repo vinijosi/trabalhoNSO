@@ -28,25 +28,9 @@ public class Escalonador {
 		return retorno;	
 	}
 	
-	int qtdeProntos(){
-		return this.processosProntos.size();
-	}
-	
 	public void incluiComoPronto(Processo novoProcesso) {
-		if (novoProcesso.prioridade == 0) {
-			this.processoTempoReal.add(novoProcesso);
-		}
-		if (novoProcesso.prioridade == 1) {
-			this.processoUsuario1.add(novoProcesso);
-		}
-		if (novoProcesso.prioridade == 2) {
-			this.processoUsuario2.add(novoProcesso);
-		}
-		if (novoProcesso.prioridade >= 3) {
-			this.processoUsuario3.add(novoProcesso);
-		}
-
-//		this.processosProntos.add(novoProcesso);
+		
+		this.processosProntos.add(novoProcesso);
 		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);
 	
 	}
@@ -72,6 +56,14 @@ public class Escalonador {
 	public void bloquearProcesso(Processo novoProcesso) {
 		this.processosBloqueados.add(novoProcesso);
 		System.out.println("Processo Bloqueado\n");
+	}
+	
+	int qtdeProntos(){
+		return this.processosProntos.size();
+	}
+
+	public int qtdeBloqueados() {
+		return this.processosBloqueados.size();
 	}
 }
 

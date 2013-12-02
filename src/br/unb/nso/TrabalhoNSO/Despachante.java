@@ -39,7 +39,7 @@ public class Despachante {
 	}
 
 	public boolean temProcessos() {
-		if (escalonador.qtdeProntos() > 0){
+		if (escalonador.qtdeProntos() > 0 || escalonador.qtdeBloqueados() > 0){
 			return true;
 		} else {
 			return false;			
