@@ -7,6 +7,12 @@ public class CPU {
 	Clock cpuTime = new Clock();
 
 	Processo processoPreemptado;
+	
+	
+	interface Cpu {
+		CPU minhaCpu = new CPU();
+	}
+
 
 	public void processar(Processo o) throws InterruptedException{
 
@@ -30,7 +36,8 @@ public class CPU {
 		while (o.tempoNaCpu < o.tempoExecucao){			
 			System.out.printf("P%s instruction %s \n",o.pid,o.tempoNaCpu+1);
 			o.tempoNaCpu++;
-			this.cpuTime.incrementa();
+			Cpu.minhaCpu.cpuTime.incrementa();
+			System.out.printf("Clock atual: %s\n",Cpu.minhaCpu.cpuTime.relogio );
 			//TimeUnit.MILLISECONDS.sleep(100);
 		}
 

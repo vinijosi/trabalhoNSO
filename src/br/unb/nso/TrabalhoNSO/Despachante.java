@@ -2,11 +2,13 @@ package br.unb.nso.TrabalhoNSO;
 
 import java.util.List;
 
+import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+
 public class Despachante {
 
 	Escalonador escalonador = new Escalonador();
 	Memoria memoria = new Memoria();
-	CPU cpu = new CPU();
+	//CPU cpu = new CPU(); // Transferido para classe CPU
 	Recursos recursos = new Recursos();
 
 
@@ -49,9 +51,9 @@ public class Despachante {
 
 	public void despachaProximo() throws InterruptedException {
 		try{
-			cpu.processar(escalonador.escalonar());			
+			Cpu.minhaCpu.processar(escalonador.escalonar());			
 		} catch (Exception e) {
-			//cpu.cpuTime.incrementa();
+			Cpu.minhaCpu.cpuTime.incrementa();
 		}
 
 
