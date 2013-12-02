@@ -18,7 +18,7 @@ public class Despachante {
 				escalonador.incluiComoPronto(processo);
 
 			} else {
-				escalonador.bloquearProcesso(processo);
+				escalonador.incluiComoBloqueado(processo);
 			}
 		}
 	}
