@@ -44,9 +44,6 @@ public class Escalonador {
 	
 	public void bloquearProcesso(Processo novoProcesso) {
 		this.processosBloqueados.add(novoProcesso);
-		novoProcesso.envelhece();
-		//se o processo estiver como pronto
-		//processosProntos.remove(novoProcesso);
 		System.out.println("Processo Bloqueado\n");
 	}
 }
