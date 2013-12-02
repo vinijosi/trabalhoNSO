@@ -13,7 +13,6 @@ public class CPU {
 		CPU minhaCpu = new CPU();
 	}
 
-
 	public void processar(Processo o) throws InterruptedException{
 
 		System.out.printf("\nPID: %s \n",o.pid);

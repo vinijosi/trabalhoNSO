@@ -8,6 +8,7 @@ public class Clock {
 	public void incrementa(){
 		Cpu.minhaCpu.cpuTime.relogio++;
 		//Verifaca a cada incrementa se existem bloqueados
+		
 	}
 
 
