@@ -1,6 +1,5 @@
 package br.unb.nso.TrabalhoNSO;
 
-import java.util.concurrent.TimeUnit;
 
 public class CPU {
 
