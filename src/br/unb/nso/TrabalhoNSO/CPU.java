@@ -32,14 +32,14 @@ public class CPU {
 			System.out.printf("P%s instruction %s \n",o.pid,o.tempoNaCpu+1);
 			o.tempoNaCpu++;
 			this.cpuTime.incrementa();
-			TimeUnit.MILLISECONDS.sleep(100);
+			//TimeUnit.MILLISECONDS.sleep(100);
 		}
 
 		System.out.printf("P%s return SIGINT\n",o.pid);
 		
 		Recursos.liberaRecursos(o);
 		Memoria.liberaMemoria(o);
-		TimeUnit.MILLISECONDS.sleep(1000);
+		TimeUnit.MILLISECONDS.sleep(10);
 
 	}
 
