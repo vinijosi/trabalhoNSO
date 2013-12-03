@@ -12,20 +12,31 @@ public class Despachante {
 	//Memoria memoria = new Memoria();
 	//CPU cpu = new CPU(); // Transferido para classe CPU
 	Recursos recursos = new Recursos();
+	
+	interface despachante {
+		Despachante nsoDespachante = new Despachante();
+	}
 
 	
+	public void entregaEscalonador(List<Processo> global, int tempo) {
+		Processo auxi = new Processo();
+		auxi = global.get(0);
+		while (tempo == auxi.tempoInicializacao){
+		  	
+			if (temRecursos(auxi)){
+				alocaRecursos(auxi);
+				escalonador.nsoEscalonador.incluiComoPronto(auxi);
 
-	public void entregaEscalonador(List<Processo> global) {//tente incluir nos argumentos uma interface do relogio, pra mostrar o tempo
-		
-		/*while (tempo.clock == tempo.processo){
-		 * 	
-		 * 	escalona e passa pro pronto ou bloqueado
-		 * tem que ser feito a cada incremento do clock
-		 * 
-		 * 
-		 * }
-		 * */
-		for (int i=0;i < global.size();i++){
+			} else {
+				escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
+			}
+			
+			global.remove(0);
+			auxi = global.get(0);
+		  
+		  }
+		 
+	/*	for (int i=0;i < global.size();i++){
 			Processo processo = global.get(i);
 			if (temRecursos(processo)){
 				alocaRecursos(processo);
@@ -34,7 +45,7 @@ public class Despachante {
 			} else {
 				escalonador.nsoEscalonador.incluiComoBloqueado(processo);
 			}
-		}
+		}*/
 	}
 
 	private void alocaRecursos(Processo processo) {
