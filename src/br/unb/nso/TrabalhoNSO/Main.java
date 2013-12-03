@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
-
+import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 
 
 public class Main {
@@ -24,16 +24,10 @@ public class Main {
 		 * */ 
 
 		Despachante despachante = new Despachante();
-
 		despachante.entregaEscalonador(global);
-
-		while (despachante.temProcessos()){
-			
-			despachante.despachaProximo();
-		
+		while (despachante.temProcessos()){			
+			despachante.despachaProximo();		
 		}
-		
-
 	}
 
 
