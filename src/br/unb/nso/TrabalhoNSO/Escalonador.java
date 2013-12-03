@@ -14,7 +14,9 @@ public class Escalonador {
 	private List<Processo> processosBloqueados;
 		
 	
-	
+	interface escalonador {
+		Escalonador nsoEscalonador = new Escalonador();
+	}
 	
 	public Escalonador(){	
 		this.processoTempoReal = new ArrayList<Processo>();

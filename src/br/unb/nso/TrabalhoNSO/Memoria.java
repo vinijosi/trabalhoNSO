@@ -1,5 +1,8 @@
 package br.unb.nso.TrabalhoNSO;
 
+import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
+
+
 
 public class Memoria {
 
@@ -8,6 +11,7 @@ public class Memoria {
 
 	private static  int[] memoriaCPU = new int[MEMCPU];
 	private static  int[] memoriaUsuario = new int[MEMUSER];
+	private int semaforo = 1;
 
 	public Memoria(){
 		for (int i = 0; i < MEMCPU; i++) {
@@ -17,6 +21,9 @@ public class Memoria {
 			memoriaUsuario[i] = 0;
 		}
 
+	}
+	interface memoria {
+		Memoria nsoMemoria = new Memoria();
 	}
 	/*
 	 * Retorna true se existirem blocos contiguos suficientes para 
@@ -43,7 +50,7 @@ public class Memoria {
 			if (memoriaTipo[i] == 0 && blocosLivres < o.blocosMemoria){
 				blocosLivres++;
 			}
-			
+
 		}
 		return false;
 	}
@@ -55,63 +62,80 @@ public class Memoria {
 	 * */
 
 	public void alocaMemoria(Processo processo) {
-		int blocosParaAlocar = processo.blocosMemoria;
-		if (processo.pid == 0) {
-			System.out.printf("Blocos: ");
-			for (int i = 0; i < MEMCPU; i++){
-				if ((blocosParaAlocar > 0) && (memoriaCPU[i]==0)){
+		if (memoria.nsoMemoria.down() == true){
+			int blocosParaAlocar = processo.blocosMemoria;
+			if (processo.pid == 0) {
+				System.out.printf("Blocos: ");
+				for (int i = 0; i < MEMCPU; i++){
+					if ((blocosParaAlocar > 0) && (memoriaCPU[i]==0)){
 
-					memoriaCPU[i] = processo.pid;
-					blocosParaAlocar--;
-					processo.offsetMemoria = (i - processo.blocosMemoria);
-
-					/* 
-					 * DELETAR ESTA SAIDA
-					 **/
-
-					System.out.printf("%s, ", i);
-
+						memoriaCPU[i] = processo.pid;
+						blocosParaAlocar--;
+						processo.offsetMemoria = (i - processo.blocosMemoria);
+					}
+					System.out.printf("da memoria da CPU alocados\n");
 				}
-				System.out.printf("da memoria da CPU alocados\n");
-			}
 
+			} else {
+				System.out.printf("Blocos: ");
+				for (int i = 0; i < MEMUSER; i++){
+					if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
+						memoriaUsuario[i] = processo.pid;
+						blocosParaAlocar--;
+						processo.offsetMemoria = (i - processo.blocosMemoria + 1);
+						System.out.printf("%s, ", i);
+					}
+				}
+				System.out.printf("da Memoria de Usuário alocados\n");
+
+			}			
+			memoria.nsoMemoria.up();
 		} else {
-			System.out.printf("Blocos: ");
-			for (int i = 0; i < MEMUSER; i++){
-				if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
-					memoriaUsuario[i] = processo.pid;
-					blocosParaAlocar--;
-					processo.offsetMemoria = (i - processo.blocosMemoria + 1);
-					System.out.printf("%s, ", i);
-				}
-			}
-			System.out.printf("da Memoria de Usuário alocados\n");
-
+			escalonador.nsoEscalonador.bloquearProcesso(processo);
 		}
+
 	}
 
 	public static  void liberaMemoria(Processo processo) {
-		if (processo.prioridade == 0) {
-			System.out.printf("Blocos: ");
-			for (int i = 0; i < MEMCPU; i++){
-				if (memoriaCPU[i]==processo.pid){
-					System.out.printf("%s, ",i);
-					memoriaCPU[i] = 0;
+		if (memoria.nsoMemoria.down() == true){
+			if (processo.prioridade == 0) {
+				System.out.printf("Blocos: ");
+				for (int i = 0; i < MEMCPU; i++){
+					if (memoriaCPU[i]==processo.pid){
+						System.out.printf("%s, ",i);
+						memoriaCPU[i] = 0;
+					}
 				}
-			}
-			System.out.printf("da Memoria de CPU liberados\n");
-		} else {
-			System.out.printf("Blocos: ");
-			for (int i = 0; i < MEMUSER; i++){
-				if (memoriaUsuario[i]==processo.pid){
-					memoriaUsuario[i] = 0;
-					System.out.printf("%s ",i);					
+				System.out.printf("da Memoria de CPU liberados\n");
+			} else {
+				System.out.printf("Blocos: ");
+				for (int i = 0; i < MEMUSER; i++){
+					if (memoriaUsuario[i]==processo.pid){
+						memoriaUsuario[i] = 0;
+						System.out.printf("%s ",i);					
+					}
 				}
+				System.out.printf("da Memoria de Usuário liberados\n");
+
 			}
-			System.out.printf("da Memoria de Usuário liberados\n");
 
 		}
+		memoria.nsoMemoria.up();
+
 		// Criar metodo que chame o Despachante para incluir como pronto processos
 		//bloqueados
+	}
+
+	private void up() {
+		memoria.nsoMemoria.semaforo++;
+
+	}
+	public boolean down() {
+		if (memoria.nsoMemoria.semaforo == 0) {
+			return false;
+		} 
+		memoria.nsoMemoria.semaforo--;
+		return true;
+
 	}
 }

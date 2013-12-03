@@ -1,5 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
+import br.unb.nso.TrabalhoNSO.Recursos.recursos;
 
 public class CPU {
 
@@ -10,7 +11,7 @@ public class CPU {
 	
 	
 	interface Cpu {
-		CPU minhaCpu = new CPU();
+		CPU nsoCpu = new CPU();
 	}
 
 	public void processar(Processo o) throws InterruptedException{
@@ -35,14 +36,14 @@ public class CPU {
 		while (o.tempoNaCpu < o.tempoExecucao){			
 			System.out.printf("P%s instruction %s \n",o.pid,o.tempoNaCpu+1);
 			o.tempoNaCpu++;
-			Cpu.minhaCpu.cpuTime.incrementa();
-			System.out.printf("Clock atual: %s\n",Cpu.minhaCpu.cpuTime.relogio );
+			Cpu.nsoCpu.cpuTime.incrementa();
+			System.out.printf("Clock atual: %s\n",Cpu.nsoCpu.cpuTime.relogio );
 			//TimeUnit.MILLISECONDS.sleep(100);
 		}
 
 		System.out.printf("P%s return SIGINT\n",o.pid);
 		
-		Recursos.liberaRecursos(o);
+		recursos.nsoRecursos.liberaRecursos(o);
 		Memoria.liberaMemoria(o);
 
 	}

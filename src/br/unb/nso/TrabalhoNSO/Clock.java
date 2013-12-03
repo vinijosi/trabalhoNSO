@@ -6,7 +6,7 @@ public class Clock {
 
 	int relogio = 0; // Tempo total de Uso da CPU
 	public void incrementa(){
-		Cpu.minhaCpu.cpuTime.relogio++;
+		Cpu.nsoCpu.cpuTime.relogio++;
 		//Verifaca a cada incrementa se existem bloqueados
 		
 	}
