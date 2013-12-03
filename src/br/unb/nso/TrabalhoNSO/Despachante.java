@@ -13,8 +13,18 @@ public class Despachante {
 	//CPU cpu = new CPU(); // Transferido para classe CPU
 	Recursos recursos = new Recursos();
 
+	
 
-	public void entregaEscalonador(List<Processo> global) {
+	public void entregaEscalonador(List<Processo> global) {//tente incluir nos argumentos uma interface do relogio, pra mostrar o tempo
+		
+		/*while (tempo.clock == tempo.processo){
+		 * 	
+		 * 	escalona e passa pro pronto ou bloqueado
+		 * tem que ser feito a cada incremento do clock
+		 * 
+		 * 
+		 * }
+		 * */
 		for (int i=0;i < global.size();i++){
 			Processo processo = global.get(i);
 			if (temRecursos(processo)){
@@ -57,7 +67,7 @@ public class Despachante {
 		} catch (Exception e) {
 			Cpu.nsoCpu.cpuTime.incrementa();
 		}
-
-
 	}
+	
+	
 }
