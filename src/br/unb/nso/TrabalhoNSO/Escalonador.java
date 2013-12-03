@@ -47,16 +47,20 @@ public class Escalonador {
 	
 	public void processoProntoDistribui (Processo novoProcesso){		
 		if (novoProcesso.prioridade == 0){			
-			this.processoTempoReal.add(novoProcesso);			
+			this.processoTempoReal.add(novoProcesso);	
+			this.processosProntos.remove(0);
 		}		
 		if (novoProcesso.prioridade == 1){
 			this.processoUsuario1.add(novoProcesso);
+			this.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade == 2){
 			this.processoUsuario2.add(novoProcesso);
+			this.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade >= 3){
 			this.processoUsuario3.add(novoProcesso);
+			this.processosProntos.remove(0);
 		}
 	}
 	
