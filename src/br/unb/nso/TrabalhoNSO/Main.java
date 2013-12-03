@@ -18,18 +18,18 @@ public class Main {
 
 		LinkedList<Processo> global = leArquivo();
 
+				
 		/*
 		 * 2.1.1 - Despachante: Processo principal.
 		 * Será responsável pela criação dos Processos.
 		 * */ 
-
+		int tempo = Cpu.nsoCpu.cpuTime.relogio;
 		Despachante despachante = new Despachante();
-		despachante.entregaEscalonador(global);
-		while (despachante.temProcessos()){			
-			despachante.despachaProximo();		
-		}
+		despachante.entregaEscalonador(global, tempo);
+		
 	}
 
+	
 
 	/*
 	 * Lendo do Arquivo e salvando em uma fila geral
@@ -68,7 +68,7 @@ public class Main {
 				int modem = Integer.parseInt(campos[6]); // campo3
 				int disco = Integer.parseInt(campos[7]); // campo3
 
-				System.out.printf(
+				/*System.out.printf(
 								"Tempo de Inicializacao: %s\n" +
 								"Prioridade do Processo: %s\n" +
 								"Tempo de Execucao: %s\n" +
@@ -76,8 +76,8 @@ public class Main {
 								"Impressora: %s\n" +
 								"Scanner: %s\n" +
 								"Modem: %s\n" +
-								"Disco: %s\n"
-								, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);
+								"Disco: %s\n\n"
+								, tempoInicializacao, prioridade, tempoExecucao, blocosMemoria, impressora, scanner, modem, disco);*/
 
 				//TimeUnit.MILLISECONDS.sleep(1000);
 
@@ -106,6 +106,7 @@ public class Main {
 		Collections.sort(lista);		
 		Processo no = new Processo();
 		Iterator<Processo> noTemporal = lista.iterator();		
+		
 		no = lista.get(0);
 		noTemporal = lista.iterator();
 		
@@ -113,6 +114,25 @@ public class Main {
 			no = noTemporal.next();
 			no.pid = cont;
 			cont++;	
+		}
+		
+		no = lista.get(0);
+		noTemporal = lista.iterator();
+		
+		while(noTemporal.hasNext()){
+			
+			System.out.printf(
+					"Tempo de Inicializacao: %s\n" +
+					"Prioridade do Processo: %s\n" +
+					"Tempo de Execucao: %s\n" +
+					"Blocos de Memoria: %s\n" +
+					"Impressora: %s\n" +
+					"Scanner: %s\n" +
+					"Modem: %s\n" +
+					"Disco: %s\n\n"
+					, no.tempoInicializacao, no.prioridade, no.tempoExecucao, no.blocosMemoria, no.impressora, no.scanner, no.modem, no.disco);
+		
+			no = noTemporal.next();
 		}
 		
 		return lista;
