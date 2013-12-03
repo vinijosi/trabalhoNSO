@@ -35,17 +35,31 @@ public class Escalonador {
 		return retorno;	
 	}
 	
-	public void incluiComoPronto(Processo novoProcesso) {
-		
+	public void incluiComoPronto(Processo novoProcesso) {		
 		this.processosProntos.add(novoProcesso);
-		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);
-	
+		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);	
 	}
 	
 	public void incluiComoBloqueado(Processo novoProcesso){
 		this.processosBloqueados.add(novoProcesso);
 		System.out.printf("\nProcesso %s Incluido como Bloqueado\n", novoProcesso.pid);
 	}
+	
+	public void processoProntoDistribui (Processo novoProcesso){		
+		if (novoProcesso.prioridade == 0){			
+			this.processoTempoReal.add(novoProcesso);			
+		}		
+		if (novoProcesso.prioridade == 1){
+			this.processoUsuario1.add(novoProcesso);
+		}
+		if (novoProcesso.prioridade == 2){
+			this.processoUsuario2.add(novoProcesso);
+		}
+		if (novoProcesso.prioridade >= 3){
+			this.processoUsuario3.add(novoProcesso);
+		}
+	}
+	
 	
 	
 	 /* Insere o processo na fila de bloqueados
