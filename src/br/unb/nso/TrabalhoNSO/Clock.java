@@ -1,6 +1,7 @@
 package br.unb.nso.TrabalhoNSO;
 
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 public class Clock {
 
@@ -8,6 +9,7 @@ public class Clock {
 	public void incrementa(){
 		Cpu.nsoCpu.cpuTime.relogio++;
 		//Verifaca a cada incrementa se existem bloqueados
+	//	while(escalonador.nsoEscalonador.
 		
 	}
 
