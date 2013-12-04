@@ -22,16 +22,40 @@ public class Recursos {
 		Recursos nsoRecursos = new Recursos();
 	}
 	public void alocaRecursos(Processo processo) {
-		if (processo.impressora == 1) recursos.nsoRecursos.setImpressora(processo.pid);
-		if (processo.scanner == 1) recursos.nsoRecursos.setScanner(processo.pid);
-		if (processo.disco == 1) recursos.nsoRecursos.setDisco(processo.pid);
-		if (processo.modem == 1) recursos.nsoRecursos.setModem(processo.pid);
+		if (processo.impressora == 1) {
+			recursos.nsoRecursos.setImpressora(processo.pid);
+			System.out.print("Impressora Alocada\n");
+		}
+		if (processo.scanner == 1) {
+			recursos.nsoRecursos.setScanner(processo.pid);
+			System.out.print("Scanner Alocado\n");
+		}
+		if (processo.disco == 1) {
+			recursos.nsoRecursos.setDisco(processo.pid);
+			System.out.print("Disco Alocado\n");
+		}
+		if (processo.modem == 1) {
+			recursos.nsoRecursos.setModem(processo.pid);
+			System.out.print("Modem Alocado\n");
+		}
 	}
 	public void liberaRecursos(Processo o) {
-		if ((o.impressora == 1) && (recursos.nsoRecursos.getImpressora() == o.pid)) recursos.nsoRecursos.setImpressora(0); 
-		if ((o.scanner == 1) && (recursos.nsoRecursos.getScanner()== o.scanner)) recursos.nsoRecursos.setScanner(0);
-		if ((o.disco == 1) && (recursos.nsoRecursos.getDisco()== o.pid)) recursos.nsoRecursos.setDisco(0);
-		if ((o.modem == 1) && (recursos.nsoRecursos.getModem()== o.pid)) recursos.nsoRecursos.setModem(0);
+		if ((o.impressora == 1) && (recursos.nsoRecursos.getImpressora() == o.pid)) {
+			recursos.nsoRecursos.setImpressora(0); 
+			System.out.print("Impressora Liberada\n");
+		}
+		if ((o.scanner == 1) && (recursos.nsoRecursos.getScanner()== o.scanner)) {
+			recursos.nsoRecursos.setScanner(0);
+			System.out.print("Scanner Liberado\n");
+		}
+		if ((o.disco == 1) && (recursos.nsoRecursos.getDisco()== o.pid)) {
+			recursos.nsoRecursos.setDisco(0);
+			System.out.print("Disco Liberado\n");
+		}
+		if ((o.modem == 1) && (recursos.nsoRecursos.getModem()== o.pid)) {
+			recursos.nsoRecursos.setModem(0);
+			System.out.print("Modem Liberado\n");
+		}
 
 	}
 	public int getImpressora() {
@@ -45,20 +69,17 @@ public class Recursos {
 	}
 	public void setScanner(int pid) {
 		scanner = pid;
-		System.out.print("Scanner Alocada\n");
 	}
 	public int getDisco() {
 		return disco;
 	}
 	public void setDisco(int pid) {
 		disco = pid;
-		System.out.print("Disco Alocada\n");
 	}
 	public int getModem() {
 		return modem;
 	}
 	public void setModem(int pid) {
 		modem = pid;
-		System.out.print("Modem Alocada\n");
 	}
 }
