@@ -1,4 +1,4 @@
-	package br.unb.nso.TrabalhoNSO;
+package br.unb.nso.TrabalhoNSO;
 	
 	@SuppressWarnings("serial")
 	public class Processo extends Exception implements Comparable<Processo> {
@@ -44,7 +44,6 @@
 		 * e por prioridade 
 		 * */
 	
-		@Override
 		public int compareTo(Processo o) {
 			if((this.tempoInicializacao - o.tempoInicializacao) != 0){
 				return this.tempoInicializacao - o.tempoInicializacao;
