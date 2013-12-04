@@ -5,13 +5,14 @@ import java.util.List;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 import br.unb.nso.TrabalhoNSO.Memoria.memoria;
+import br.unb.nso.TrabalhoNSO.Recursos.recursos;
 
 public class Despachante {
 
 	//Escalonador escalonador = new Escalonador();
 	//Memoria memoria = new Memoria();
 	//CPU cpu = new CPU(); // Transferido para classe CPU
-	Recursos recursos = new Recursos();
+	//Recursos recursos = new Recursos();
 	
 	interface despachante {
 		Despachante nsoDespachante = new Despachante();
@@ -50,17 +51,18 @@ public class Despachante {
 
 	private void alocaRecursos(Processo processo) {
 		memoria.nsoMemoria.alocaMemoria(processo);
-		recursos.alocaRecursos(processo);
+		recursos.nsoRecursos.alocaRecursos(processo);
 	}
 
 	private boolean temRecursos(Processo processo) {
-
-		if (memoria.nsoMemoria.memoriaLivre(processo) 
-				/* && Incluir todos os teste de Recursos*/){
-			return true;
-		} else
-
-			return false;
+		
+		boolean bool = true;
+		if (!memoria.nsoMemoria.memoriaLivre(processo)) bool = false;
+		if ((processo.impressora == 1) && recursos.nsoRecursos.getImpressora() == 0) bool = false;
+		if ((processo.scanner == 1) && recursos.nsoRecursos.getScanner() == 0) bool = false;
+		if ((processo.disco == 1) && recursos.nsoRecursos.getDisco() == 0) bool = false;
+		if ((processo.modem == 1) && recursos.nsoRecursos.getModem() == 0) bool = false;
+			return bool;
 	}
 
 	public boolean temProcessos() {
@@ -74,8 +76,9 @@ public class Despachante {
 
 	public void despachaProximo() throws InterruptedException {
 		try{
-			Cpu.nsoCpu.processar(escalonador.nsoEscalonador.escalonar());			
+			Cpu.nsoCpu.processar(escalonador.nsoEscalonador.escalonar());
 		} catch (Exception e) {
+			//Como não existe processo pronto na fila incrementamos a cpu.
 			Cpu.nsoCpu.cpuTime.incrementa();
 		}
 	}
