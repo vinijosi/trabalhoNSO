@@ -37,31 +37,31 @@ public class Escalonador {
 	}
 
 	public void incluiComoPronto(Processo novoProcesso) {		
-		this.processosProntos.add(novoProcesso);
+		escalonador.nsoEscalonador.processosProntos.add(novoProcesso);
 		System.out.printf("\nProcesso %s Incluido como Pronto\n", novoProcesso.pid);	
 	}
 
 	public void incluiComoBloqueado(Processo novoProcesso){
-		this.processosBloqueados.add(novoProcesso);
+		escalonador.nsoEscalonador.processosBloqueados.add(novoProcesso);
 		System.out.printf("\nProcesso %s Incluido como Bloqueado\n", novoProcesso.pid);
 	}
 
 	public void processoProntoDistribui (Processo novoProcesso){		
 		if (novoProcesso.prioridade == 0){			
-			processoTempoReal.add(novoProcesso);	
-			processosProntos.remove(0);
+			escalonador.nsoEscalonador.processoTempoReal.add(novoProcesso);	
+			escalonador.nsoEscalonador.processosProntos.remove(0);
 		}		
 		if (novoProcesso.prioridade == 1){
-			this.processoUsuario1.add(novoProcesso);
-			this.processosProntos.remove(0);
+			escalonador.nsoEscalonador.processoUsuario1.add(novoProcesso);
+			escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade == 2){
-			this.processoUsuario2.add(novoProcesso);
-			this.processosProntos.remove(0);
+			escalonador.nsoEscalonador.processoUsuario2.add(novoProcesso);
+			escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade >= 3){
-			this.processoUsuario3.add(novoProcesso);
-			this.processosProntos.remove(0);
+			escalonador.nsoEscalonador.processoUsuario3.add(novoProcesso);
+			escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 	}
 
@@ -72,20 +72,20 @@ public class Escalonador {
 
 
 	public void bloquearProcesso(Processo novoProcesso) {
-		this.processosBloqueados.add(novoProcesso);
+		escalonador.nsoEscalonador.processosBloqueados.add(novoProcesso);
 		System.out.println("Processo Bloqueado\n");
 	}
 
 	int qtdeProntos(){
-		return processosProntos.size();
+		return escalonador.nsoEscalonador.processosProntos.size();
 	}
 
 	public int qtdeBloqueados() {
-		return processosBloqueados.size();
+		return escalonador.nsoEscalonador.processosBloqueados.size();
 	}
 
 	public Processo proximoPronto() {
-		return processosProntos.get(0);
+		return escalonador.nsoEscalonador.processosProntos.get(0);
 	}
 
 	

@@ -45,17 +45,20 @@ public class Recursos {
 	}
 	public void setScanner(int pid) {
 		scanner = pid;
+		System.out.print("Scanner Alocada\n");
 	}
 	public int getDisco() {
 		return disco;
 	}
 	public void setDisco(int pid) {
 		disco = pid;
+		System.out.print("Disco Alocada\n");
 	}
 	public int getModem() {
 		return modem;
 	}
 	public void setModem(int pid) {
 		modem = pid;
+		System.out.print("Modem Alocada\n");
 	}
 }

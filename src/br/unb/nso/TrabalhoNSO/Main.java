@@ -28,15 +28,18 @@ public class Main {
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
 		Despachante despachante = new Despachante();
 		despachante.entregaEscalonador(global/*, tempo*/);
-		while (despachante.temProcessos()){
-
-			System.out.printf("Proximo das pronto: %s      \n", escalonador.nsoEscalonador.proximoPronto().tempoInicializacao);
-			escalonador.nsoEscalonador.processoProntoDistribui(escalonador.nsoEscalonador.proximoPronto());
-	
-			if (escalonador.nsoEscalonador.verificaProximoProntodasFilas().tempoInicializacao == Cpu.nsoCpu.cpuTime.relogio){
-				despachante.despachaProximo();
-			}
-		}
+		
+		
+		//  Tentativa de dar seguimento a alimentacao dos
+		// das filas qq coisa me manda uma msg
+//		while (despachante.temProcessos()){
+//			
+//			escalonador.nsoEscalonador.processoProntoDistribui(escalonador.nsoEscalonador.proximoPronto());
+//	
+//			if (escalonador.nsoEscalonador.verificaProximoProntodasFilas().tempoInicializacao == Cpu.nsoCpu.cpuTime.relogio){
+//				despachante.despachaProximo();
+//			}
+//		}
 		
 	}
 
