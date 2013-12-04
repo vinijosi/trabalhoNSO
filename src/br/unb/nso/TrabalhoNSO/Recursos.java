@@ -1,18 +1,18 @@
 package br.unb.nso.TrabalhoNSO;
 
 public class Recursos {
-	
+
 	//private static int semaforoImpressora = 2;
-	
-	
+
+
 	private static int impressora;
 	private static int scanner;
 	private static int disco;
 	private static int modem;
 
-	
+
 	public Recursos(){
-		
+
 		setImpressora(0);
 		setScanner(0);
 		setDisco(0);
@@ -38,24 +38,24 @@ public class Recursos {
 		return impressora;
 	}
 	public void setImpressora(int pid) {
-		Recursos.impressora = pid;
+		impressora = pid;
 	}
 	public int getScanner() {
 		return scanner;
 	}
 	public void setScanner(int pid) {
-		Recursos.scanner = pid;
+		scanner = pid;
 	}
 	public int getDisco() {
 		return disco;
 	}
 	public void setDisco(int pid) {
-		Recursos.disco = pid;
+		disco = pid;
 	}
 	public int getModem() {
 		return modem;
 	}
 	public void setModem(int pid) {
-		Recursos.modem = pid;
+		modem = pid;
 	}
 }

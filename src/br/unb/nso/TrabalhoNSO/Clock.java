@@ -1,7 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
-import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 public class Clock {
 

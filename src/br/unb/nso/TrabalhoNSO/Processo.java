@@ -53,23 +53,24 @@
 			return this.prioridade - o.prioridade;
 			}
 		}
+
+		// Metodos ainda nao usados
+//		public boolean recursosLivres() {	
+//			try{
+//				return true;
+//			} catch (Exception e){
+//				System.out.println("Nao existem recursos Disponiveis");			
+//			}
+//			// TODO Auto-generated method stub
+//			return true;
+//		}
 	
-		public boolean recursosLivres() {	
-			try{
-				return true;
-			} catch (Exception e){
-				System.out.println("Nao existem recursos Disponiveis");			
-			}
-			// TODO Auto-generated method stub
-			return true;
-		}
-	
-		public void envelhece() {
-			this.idade++;
-			if(this.prioridade>1){
-				this.prioridade--;
-			}
-		}
+//		public void envelhece() {
+//			this.idade++;
+//			if(this.prioridade>1){
+//				this.prioridade--;
+//			}
+//		}
 	
 		
 	}

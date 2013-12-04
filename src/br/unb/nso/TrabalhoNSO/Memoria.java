@@ -65,7 +65,7 @@ public class Memoria {
 		if (memoria.nsoMemoria.down() == true){
 			int blocosParaAlocar = processo.blocosMemoria;
 			if (processo.pid == 0) {
-				System.out.printf("Blocos: ");
+				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMCPU; i++){
 					if ((blocosParaAlocar > 0) && (memoriaCPU[i]==0)){
 
@@ -77,7 +77,7 @@ public class Memoria {
 				}
 
 			} else {
-				System.out.printf("Blocos: ");
+				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMUSER; i++){
 					if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
 						memoriaUsuario[i] = processo.pid;
@@ -96,10 +96,10 @@ public class Memoria {
 
 	}
 
-	public static  void liberaMemoria(Processo processo) {
+	public  void liberaMemoria(Processo processo) {
 		if (memoria.nsoMemoria.down() == true){
 			if (processo.prioridade == 0) {
-				System.out.printf("Blocos: ");
+				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMCPU; i++){
 					if (memoriaCPU[i]==processo.pid){
 						System.out.printf("%s, ",i);
@@ -108,7 +108,7 @@ public class Memoria {
 				}
 				System.out.printf("da Memoria de CPU liberados\n");
 			} else {
-				System.out.printf("Blocos: ");
+				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMUSER; i++){
 					if (memoriaUsuario[i]==processo.pid){
 						memoriaUsuario[i] = 0;

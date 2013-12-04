@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
-
+import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 public class Main {
 
@@ -23,9 +23,20 @@ public class Main {
 		 * 2.1.1 - Despachante: Processo principal.
 		 * Será responsável pela criação dos Processos.
 		 * */ 
-		int tempo = Cpu.nsoCpu.cpuTime.relogio;
+		
+		
+		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
 		Despachante despachante = new Despachante();
-		despachante.entregaEscalonador(global, tempo);
+		despachante.entregaEscalonador(global/*, tempo*/);
+		while (despachante.temProcessos()){
+
+			System.out.printf("Proximo das pronto: %s      \n", escalonador.nsoEscalonador.proximoPronto().tempoInicializacao);
+			escalonador.nsoEscalonador.processoProntoDistribui(escalonador.nsoEscalonador.proximoPronto());
+	
+			if (escalonador.nsoEscalonador.verificaProximoProntodasFilas().tempoInicializacao == Cpu.nsoCpu.cpuTime.relogio){
+				despachante.despachaProximo();
+			}
+		}
 		
 	}
 

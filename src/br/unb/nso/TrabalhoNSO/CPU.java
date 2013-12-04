@@ -1,5 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
+import br.unb.nso.TrabalhoNSO.Memoria.memoria;
 import br.unb.nso.TrabalhoNSO.Recursos.recursos;
 
 public class CPU {
@@ -43,8 +44,9 @@ public class CPU {
 
 		System.out.printf("P%s return SIGINT\n",o.pid);
 		
+		
 		recursos.nsoRecursos.liberaRecursos(o);
-		Memoria.liberaMemoria(o);
+		memoria.nsoMemoria.liberaMemoria(o);
 
 	}
 

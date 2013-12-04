@@ -18,11 +18,12 @@ public class Despachante {
 		Despachante nsoDespachante = new Despachante();
 	}
 
-	
-	public void entregaEscalonador(List<Processo> global, int tempo) {
+	// Vinicius Removi a variavel tempo pois ele esta disponivel como Interface 
+	// caso queira voltar é so desfazer os comentarios aqui e na main
+	public void entregaEscalonador(List<Processo> global/*, int tempo*/) {
 		Processo auxi = new Processo();
 		auxi = global.get(0);
-		while (tempo == auxi.tempoInicializacao){
+		while (/*tempo*/Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao){
 		  	
 			if (temRecursos(auxi)){
 				alocaRecursos(auxi);
@@ -36,6 +37,7 @@ public class Despachante {
 			auxi = global.get(0);
 		  
 		  }
+
 		 
 	/*	for (int i=0;i < global.size();i++){
 			Processo processo = global.get(i);
@@ -48,6 +50,7 @@ public class Despachante {
 			}
 		}*/
 	}
+	
 
 	private void alocaRecursos(Processo processo) {
 		memoria.nsoMemoria.alocaMemoria(processo);
@@ -77,6 +80,7 @@ public class Despachante {
 	public void despachaProximo() throws InterruptedException {
 		try{
 			Cpu.nsoCpu.processar(escalonador.nsoEscalonador.escalonar());
+			
 		} catch (Exception e) {
 			//Como não existe processo pronto na fila incrementamos a cpu.
 			Cpu.nsoCpu.cpuTime.incrementa();
