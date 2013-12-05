@@ -8,6 +8,8 @@ import br.unb.nso.TrabalhoNSO.Despachante.despachante;
  * O Clock representa o tempo do sistema
  * */
 
+
+
 public class Clock {
 
 	int relogio = 0; // Tempo total de Uso da CPU

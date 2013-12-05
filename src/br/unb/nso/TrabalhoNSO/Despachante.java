@@ -1,7 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
 import java.util.LinkedList;
-//import java.util.List;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 import br.unb.nso.TrabalhoNSO.Memoria.memoria;
@@ -34,10 +33,12 @@ public class Despachante {
 			if (temRecursos(auxi)){
 				alocaRecursos(auxi);
 				escalonador.nsoEscalonador.incluiComoPronto(auxi);
+				escalonador.nsoEscalonador.processoProntoDistribui(auxi);
 
 			} else {
 				escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
 			}
+
 
 			if (global.size()>0){
 				this.global.remove(0); 
@@ -49,7 +50,18 @@ public class Despachante {
 				
 			}
 
+
+			
+				
+				this.global.remove();
+				
+			if (this.global.size()>0){
+				auxi = this.global.get(0);
+			}
+
 		}
+		
+		
 		
 	}
 	
@@ -83,7 +95,7 @@ public class Despachante {
 
 	public void despachaProximo() throws InterruptedException {
 		while(this.global.size() >= 0){
-			if(escalonador.nsoEscalonador.proximoProntodasFilas() != null){
+			if(escalonador.nsoEscalonador.verificaProximoProntodasFilas() != false){
 				Cpu.nsoCpu.processar(escalonador.nsoEscalonador.proximoProntodasFilas());
 				
 			}

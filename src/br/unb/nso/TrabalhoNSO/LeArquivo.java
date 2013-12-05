@@ -19,7 +19,8 @@ public class LeArquivo {
 			int pid = 1;
 			FileReader arq = new FileReader(endereco);
 			BufferedReader lerArq = new BufferedReader(arq);
-			String linha = lerArq.readLine(); // le a primeira linha
+			String linha = lerArq.readLine(); 
+			// le a primeira linha
 			// a variavel "linha" recebe o valor "null" quando o processo
 			// de repeticao atingir o final do arquivo texto
 						
@@ -50,7 +51,7 @@ public class LeArquivo {
 				//TimeUnit.MILLISECONDS.sleep(1000);
 				
 				
-				//Depois de ler o arquivo e imprim�-lo na tela inserimos em uma fila
+				//Depois de ler o arquivo e imprimi-lo na tela inserimos em uma fila
 				//A funcao insere na fila deve inserir o campo na fila / arvore adequada
 				//
 				//Inserimos o processo na fila Geral para posterior uso

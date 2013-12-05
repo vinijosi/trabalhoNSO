@@ -6,9 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
-import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Despachante.despachante;
-import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 
 public class Main {
@@ -23,7 +21,7 @@ public class Main {
 				
 		/*
 		 * 2.1.1 - Despachante: Processo principal.
-		 * Ser√° respons√°vel pela cria√ß√£o dos Processos.
+		 * Ser· respons·vel pela criaÁ„o dos Processos.
 		 * */
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
