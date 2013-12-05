@@ -9,7 +9,7 @@ public class Clock {
 	int relogio = 0; // Tempo total de Uso da CPU
 	public void incrementa() throws InterruptedException{
 		Cpu.nsoCpu.cpuTime.relogio++;
-		despachante.nsoDespachante.entregaEscalonador();
+		despachante.nsoDespachante.entregaEscalonador(despachante.nsoDespachante.global);
 	}
 
 
