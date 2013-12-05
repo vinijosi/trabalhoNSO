@@ -41,16 +41,16 @@ public class Escalonador {
 		else{
 			if(processosBloqueados.size() > 0){
 				
-				despachante.nsoDespachante.entregaEscalonador(processosBloqueados);
+				despachante.nsoDespachante.entregaEscalonador();
 				
 			}
 			else{
 			Cpu.nsoCpu.cpuTime.incrementa();
-		
-			
 			}
 		}
-	}
+	}	
+	
+	
 
 
 	public Processo escalonar(){

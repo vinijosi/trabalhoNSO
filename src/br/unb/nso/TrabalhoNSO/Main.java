@@ -28,7 +28,7 @@ public class Main {
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
 		despachante.nsoDespachante.copiaGlobal(global);
-		despachante.nsoDespachante.entregaEscalonador(global);
+		despachante.nsoDespachante.entregaEscalonador();
 		despachante.nsoDespachante.despachaProximo();
 	}
 

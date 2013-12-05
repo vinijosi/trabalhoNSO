@@ -21,13 +21,13 @@ public class Despachante {
 	
 	public void copiaGlobal (LinkedList<Processo> global2) throws InterruptedException {
 		this.global = global2;
-		entregaEscalonador(this.global);
+		entregaEscalonador();
 
 	}
 
-	public void entregaEscalonador(LinkedList<Processo> Global) throws InterruptedException {
+	public void entregaEscalonador() throws InterruptedException {
 		Processo auxi = new Processo();
-		auxi = global.get(0);
+		auxi = this.global.get(0);
 		while (Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao){
 
 			if (temRecursos(auxi)){
@@ -37,8 +37,8 @@ public class Despachante {
 			} else {
 				escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
 			}
-			global.remove(0);
-			auxi = global.get(0);
+			this.global.remove(0);
+			auxi = this.global.get(0);
 		}
 		
 	}
@@ -73,12 +73,16 @@ public class Despachante {
 
 	public void despachaProximo() throws InterruptedException {
 		while(this.global.size() >= 0){
-			escalonador.nsoEscalonador.mandaCpu();
-			
+			if(escalonador.nsoEscalonador.proximoProntodasFilas() != null){
+				Cpu.nsoCpu.processar(escalonador.nsoEscalonador.proximoProntodasFilas());
+				
+			}
+			else{
+				Cpu.nsoCpu.cpuTime.incrementa();
+			}
 		}
+
 	}
-
-
 
 
 }
