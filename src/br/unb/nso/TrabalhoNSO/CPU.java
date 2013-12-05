@@ -46,7 +46,6 @@ public class CPU {
 		
 		
 		recursos.nsoRecursos.liberaRecursos(o);
-		System.out.print("liberou?\n");
 		memoria.nsoMemoria.liberaMemoria(o);
 
 	}
