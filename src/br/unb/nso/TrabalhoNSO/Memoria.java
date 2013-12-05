@@ -6,7 +6,7 @@ import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 /*
  * Memoria
  * 
- * A alocacao de memoria √© feita se houver 
+ * A alocacao de memoria È feita se houver 
  * quantidade suficiente de blocos contiguos 
  * de memoria para o processo em questao
  * 
@@ -17,7 +17,7 @@ public class Memoria {
 	/*
 	 * Dois vetores de interio representam nossas memorias
 	 * MEMCPU representa a memoria de Tempo Real ou de CPU
-	 * MEMUSER e a memoria para processos de usu√°rio e sera o tamanho
+	 * MEMUSER e a memoria para processos de usu·rio e sera o tamanho
 	 * da memoria decrescido da MEMCPU
 	 * 
 	 * */
@@ -94,8 +94,8 @@ public class Memoria {
 	 * Aloca na memoria a quantidade de blocos necessarios
 	 * para o processo 
 	 * Antes a memoria tenta fazer um down no semaforo
-	 * Em caso de erro a alocacao nao √© feita
-	 * Porem como a verificacao de espaco √© feita ante da tentativa de alocacao
+	 * Em caso de erro a alocacao nao È feita
+	 * Porem como a verificacao de espaco È feita ante da tentativa de alocacao
 	 * este teste passa a ter somente fins didaticos.
 	 * */
 
@@ -103,7 +103,7 @@ public class Memoria {
 		if (memoria.nsoMemoria.down() == true){
 			int blocosParaAlocar = processo.blocosMemoria;
 			if (processo.pid == 0) {
-				System.out.printf("\nBlocos: ");
+//				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMCPU; i++){
 					if ((blocosParaAlocar > 0) && (memoriaCPU[i]==0)){
 
@@ -111,20 +111,20 @@ public class Memoria {
 						blocosParaAlocar--;
 						processo.offsetMemoria = (i - processo.blocosMemoria);
 					}
-					System.out.printf("da memoria da CPU alocados\n");
+//					System.out.printf("da memoria da CPU alocados\n");
 				}
 
 			} else {
-				System.out.printf("\nBlocos: ");
+//				System.out.printf("\nBlocos: ");
 				for (int i = 0; i < MEMUSER; i++){
 					if ((blocosParaAlocar > 0) && (memoriaUsuario[i]==0)){
 						memoriaUsuario[i] = processo.pid;
 						blocosParaAlocar--;
 						processo.offsetMemoria = (i - processo.blocosMemoria + 1);
-						System.out.printf("%s, ", i);
+//						System.out.printf("%s, ", i);
 					}
 				}
-				System.out.printf("da Memoria de Usu√°rio alocados\n");
+//				System.out.printf("da Memoria de Usu·rio alocados\n");
 
 			}			
 			memoria.nsoMemoria.up();
@@ -153,7 +153,7 @@ public class Memoria {
 						System.out.printf("%s ",i);					
 					}
 				}
-				System.out.printf("da Memoria de Usu√°rio liberados\n");
+				System.out.printf("da Memoria de Usu·rio liberados\n");
 
 			}
 

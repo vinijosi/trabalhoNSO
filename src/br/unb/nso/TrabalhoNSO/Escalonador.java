@@ -124,19 +124,19 @@ public class Escalonador {
 	 * Verifica qual o proximo processo das quatro filas
 	 * Esta pronto no tempo atual
 	 * */
-	public Processo verificaProximoProntodasFilas() {
-		Processo retorno = null;
+	public boolean verificaProximoProntodasFilas() {
+		boolean retorno = false;
 		if (processoTempoReal.size() > 0 && processoTempoReal.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
-			retorno = escalonador.nsoEscalonador.processoTempoReal.get(0);
+			retorno = true;
 		}
 		if (processoUsuario1.size() > 0 && processoUsuario1.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
-			retorno = escalonador.nsoEscalonador.processoUsuario1.get(0);
+			retorno = true;
 		} 
 		if (processoUsuario2.size() > 0 && processoUsuario2.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
-			retorno = escalonador.nsoEscalonador.processoUsuario2.get(0);
+			retorno = true;
 		}
 		if (processoUsuario3.size() > 0 && processoUsuario3.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
-			retorno = escalonador.nsoEscalonador.processoUsuario3.get(0);
+			retorno = true;
 		}
 		return retorno;
 
