@@ -1,15 +1,15 @@
 package br.unb.nso.TrabalhoNSO;
 
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+import br.unb.nso.TrabalhoNSO.Despachante.despachante;
+import br.unb.nso.TrabalhoNSO.Memoria.memoria;
 
 public class Clock {
 
 	int relogio = 0; // Tempo total de Uso da CPU
-	public void incrementa(){
+	public void incrementa() throws InterruptedException{
 		Cpu.nsoCpu.cpuTime.relogio++;
-		//Verifaca a cada incrementa se existem bloqueados
-	//	while(escalonador.nsoEscalonador.
-		
+		despachante.nsoDespachante.entregaEscalonador();
 	}
 
 

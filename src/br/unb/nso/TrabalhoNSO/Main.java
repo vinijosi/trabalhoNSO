@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
+
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -22,25 +23,12 @@ public class Main {
 		/*
 		 * 2.1.1 - Despachante: Processo principal.
 		 * Será responsável pela criação dos Processos.
-		 * */ 
-		
+		 * */
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
 		Despachante despachante = new Despachante();
-		despachante.entregaEscalonador(global/*, tempo*/);
-		
-		
-		//  Tentativa de dar seguimento a alimentacao dos
-		// das filas qq coisa me manda uma msg
-//		while (despachante.temProcessos()){
-//			
-//			escalonador.nsoEscalonador.processoProntoDistribui(escalonador.nsoEscalonador.proximoPronto());
-//	
-//			if (escalonador.nsoEscalonador.verificaProximoProntodasFilas().tempoInicializacao == Cpu.nsoCpu.cpuTime.relogio){
-//				despachante.despachaProximo();
-//			}
-//		}
-		
+		despachante.passaGlobal(global);
+		despachante.entregaEscalonador();
 	}
 
 	
@@ -52,7 +40,7 @@ public class Main {
 	private static LinkedList<Processo> leArquivo() {
 
 		//Dinamico implementar funcao para ler o arquivo 
-		String endereco = "processos.txt";
+		String endereco = "processosPequeno.txt";
 		LinkedList<Processo> lista = new LinkedList<Processo>() ;
 
 		/*

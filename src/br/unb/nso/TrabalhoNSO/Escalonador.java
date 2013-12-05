@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Escalonador {
 
+	
 	private List<Processo> processoTempoReal;
 	private List<Processo> processoUsuario1;
 	private List<Processo> processoUsuario2;
@@ -32,8 +33,6 @@ public class Escalonador {
 	public Processo escalonar(){
 		Processo retorno = proximoProntodasFilas();
 		return retorno;
-
-		//		return retorno;	
 	}
 
 	public void incluiComoPronto(Processo novoProcesso) {		
@@ -46,22 +45,24 @@ public class Escalonador {
 		System.out.printf("\nProcesso %s Incluido como Bloqueado\n", novoProcesso.pid);
 	}
 
-	public void processoProntoDistribui (Processo novoProcesso){		
+	public void processoProntoDistribui (Processo novoProcesso){
+		
+		System.out.printf("Distirbuido %s\n", novoProcesso.pid);
 		if (novoProcesso.prioridade == 0){			
 			escalonador.nsoEscalonador.processoTempoReal.add(novoProcesso);	
-			escalonador.nsoEscalonador.processosProntos.remove(0);
+			//escalonador.nsoEscalonador.processosProntos.remove(0);
 		}		
 		if (novoProcesso.prioridade == 1){
 			escalonador.nsoEscalonador.processoUsuario1.add(novoProcesso);
-			escalonador.nsoEscalonador.processosProntos.remove(0);
+			//escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade == 2){
 			escalonador.nsoEscalonador.processoUsuario2.add(novoProcesso);
-			escalonador.nsoEscalonador.processosProntos.remove(0);
+			//escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 		if (novoProcesso.prioridade >= 3){
 			escalonador.nsoEscalonador.processoUsuario3.add(novoProcesso);
-			escalonador.nsoEscalonador.processosProntos.remove(0);
+			//escalonador.nsoEscalonador.processosProntos.remove(0);
 		}
 	}
 
@@ -85,7 +86,13 @@ public class Escalonador {
 	}
 
 	public Processo proximoPronto() {
-		return escalonador.nsoEscalonador.processosProntos.get(0);
+		Processo retorno = null;
+		if (escalonador.nsoEscalonador.processosProntos.size() > 0){
+			 retorno = escalonador.nsoEscalonador.processosProntos.get(0);
+			 escalonador.nsoEscalonador.processosProntos.remove(0);
+		}
+		return retorno;
+
 	}
 
 	

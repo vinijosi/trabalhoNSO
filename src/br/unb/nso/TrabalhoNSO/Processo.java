@@ -60,7 +60,6 @@ package br.unb.nso.TrabalhoNSO;
 //			} catch (Exception e){
 //				System.out.println("Nao existem recursos Disponiveis");			
 //			}
-//			// TODO Auto-generated method stub
 //			return true;
 //		}
 	
