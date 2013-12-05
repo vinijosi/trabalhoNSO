@@ -5,7 +5,8 @@ public class Recursos {
 	//private static int semaforoImpressora = 2;
 
 
-	private static int impressora;
+	private static int impressora1 = 0;
+	private static int impressora2 = 0;
 	private static int scanner;
 	private static int disco;
 	private static int modem;
@@ -59,10 +60,22 @@ public class Recursos {
 
 	}
 	public int getImpressora() {
-		return impressora;
+		int retorno;
+		if (impressora1==0){
+			retorno = impressora1;
+		} else if (impressora2 == 0) {
+			retorno =  impressora2;
+		} else {
+			retorno = -1;
+		} 
+		return retorno;
 	}
 	public void setImpressora(int pid) {
-		impressora = pid;
+		if (impressora1==0){
+			impressora1 = pid;
+		} else if (impressora2 == 0) {
+			impressora2 = pid;
+		} 
 	}
 	public int getScanner() {
 		return scanner;

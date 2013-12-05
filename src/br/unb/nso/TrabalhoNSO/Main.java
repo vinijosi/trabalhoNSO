@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+import br.unb.nso.TrabalhoNSO.Despachante.despachante;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 
@@ -26,9 +27,10 @@ public class Main {
 		 * */
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
-		Despachante despachante = new Despachante();
-		despachante.passaGlobal(global);
-		despachante.entregaEscalonador();
+		//Despachante despachante = new Despachante();
+		despachante.nsoDespachante.passaGlobal(global);
+		//despachante.passaGlobal(global);
+		despachante.nsoDespachante.entregaEscalonador();
 	}
 
 	

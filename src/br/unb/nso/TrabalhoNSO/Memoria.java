@@ -2,16 +2,44 @@ package br.unb.nso.TrabalhoNSO;
 
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
-
+/*
+ * Memoria
+ * 
+ * A alocacao de memoria é feita se houver 
+ * quantidade suficiente de blocos contiguos 
+ * de memoria para o processo em questao
+ * 
+ * */
 
 public class Memoria {
+
+	/*
+	 * Dois vetores de interio representam nossas memorias
+	 * MEMCPU representa a memoria de Tempo Real ou de CPU
+	 * MEMUSER e a memoria para processos de usuário e sera o tamanho
+	 * da memoria decrescido da MEMCPU
+	 * 
+	 * */
 
 	private static int MEMCPU = 64; //TAMANHO MAXIMO DA MEMORIA DE CPU
 	private static int MEMUSER	 = 1024 - MEMCPU; //TAMANHO MAXIMO DA MEMORIA DE USUARIO
 
 	private static  int[] memoriaCPU = new int[MEMCPU];
 	private static  int[] memoriaUsuario = new int[MEMUSER];
+
+	/*
+	 * Semaforo para proteger a alocacao de memoria
+	 * */
 	private int semaforo = 1;
+
+	/*
+	 * Nossa proposta para memoria
+	 * 
+	 * Um vetor de inteiros onde cada posicsao representa um bloco de memoria 
+	 * Se o bloco esta em zero ele esta livre
+	 * Se um processo ocupa este bloco seu PID estara escrito nesta posicao
+	 * 
+	 * */
 
 	public Memoria(){
 		for (int i = 0; i < MEMCPU; i++) {
@@ -22,9 +50,14 @@ public class Memoria {
 		}
 
 	}
+
+	/*
+	 * Com esta interface a memoria estara disponivel para todas as classes
+	 * */
 	interface memoria {
 		Memoria nsoMemoria = new Memoria();
 	}
+
 	/*
 	 * Retorna true se existirem blocos contiguos suficientes para 
 	 * aquele processo.
@@ -59,6 +92,10 @@ public class Memoria {
 	/*
 	 * Aloca na memoria a quantidade de blocos necessarios
 	 * para o processo 
+	 * Antes a memoria tenta fazer um down no semaforo
+	 * Em caso de erro a alocacao nao é feita
+	 * Porem como a verificacao de espaco é feita ante da tentativa de alocacao
+	 * este teste passa a ter somente fins didaticos.
 	 * */
 
 	public void alocaMemoria(Processo processo) {

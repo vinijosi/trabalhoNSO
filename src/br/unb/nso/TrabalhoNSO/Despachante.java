@@ -24,7 +24,6 @@ public class Despachante {
 	public void passaGlobal(LinkedList<Processo> global) throws InterruptedException {
 		this.global = global;
 		entregaEscalonador();
-
 	}
 
 	public void entregaEscalonador() throws InterruptedException {
