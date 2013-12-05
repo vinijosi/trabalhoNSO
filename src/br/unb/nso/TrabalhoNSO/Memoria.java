@@ -6,7 +6,7 @@ import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 /*
  * Memoria
  * 
- * A alocacao de memoria é feita se houver 
+ * A alocacao de memoria ï¿½ feita se houver 
  * quantidade suficiente de blocos contiguos 
  * de memoria para o processo em questao
  * 
@@ -17,7 +17,7 @@ public class Memoria {
 	/*
 	 * Dois vetores de interio representam nossas memorias
 	 * MEMCPU representa a memoria de Tempo Real ou de CPU
-	 * MEMUSER e a memoria para processos de usuário e sera o tamanho
+	 * MEMUSER e a memoria para processos de usuï¿½rio e sera o tamanho
 	 * da memoria decrescido da MEMCPU
 	 * 
 	 * */
@@ -94,8 +94,8 @@ public class Memoria {
 	 * Aloca na memoria a quantidade de blocos necessarios
 	 * para o processo 
 	 * Antes a memoria tenta fazer um down no semaforo
-	 * Em caso de erro a alocacao nao é feita
-	 * Porem como a verificacao de espaco é feita ante da tentativa de alocacao
+	 * Em caso de erro a alocacao nao e feita
+	 * Porem como a verificacao de espaco e feita ante da tentativa de alocacao
 	 * este teste passa a ter somente fins didaticos.
 	 * */
 
@@ -124,7 +124,7 @@ public class Memoria {
 //						System.out.printf("%s, ", i);
 					}
 				}
-//				System.out.printf("da Memoria de Usuário alocados\n");
+//				System.out.printf("da Memoria de Usuï¿½rio alocados\n");
 
 			}			
 			memoria.nsoMemoria.up();
@@ -133,6 +133,13 @@ public class Memoria {
 		}
 
 	}
+	/*
+	 * A Liberacao de memoria Ã© feita de modo semelhante 
+	 * alocacao porem mais simples
+	 * O vetor da memoria e percorrido e 
+	 * quando o valor da posicao for igual ao do PID do processo
+	 * ele Ã© setado como zero
+	 * */
 
 	public  void liberaMemoria(Processo processo) {
 		if (memoria.nsoMemoria.down() == true){
@@ -153,7 +160,7 @@ public class Memoria {
 						System.out.printf("%s ",i);					
 					}
 				}
-				System.out.printf("da Memoria de Usuário liberados\n");
+				System.out.printf("da Memoria de Usuario liberados\n");
 
 			}
 
@@ -163,6 +170,10 @@ public class Memoria {
 		despachante.nsoDespachante.desbloqueiaProximo(); 
 	}
 
+	/*
+	 * Metodos de up e down() para os
+	 * semaforos
+	 * */
 	private void up() {
 		memoria.nsoMemoria.semaforo++;
 
