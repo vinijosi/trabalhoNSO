@@ -2,7 +2,6 @@ package br.unb.nso.TrabalhoNSO;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 import br.unb.nso.TrabalhoNSO.Memoria.memoria;
@@ -10,26 +9,25 @@ import br.unb.nso.TrabalhoNSO.Recursos.recursos;
 
 public class Despachante {
 
-	//Escalonador escalonador = new Escalonador();
-	//Memoria memoria = new Memoria();
-	//CPU cpu = new CPU(); // Transferido para classe CPU
-	//Recursos recursos = new Recursos();
-	LinkedList<Processo> global;
+	LinkedList<Processo> global = new LinkedList<Processo>();
 
 	interface despachante {
 		Despachante nsoDespachante = new Despachante();
 	}
+	
+	
 
 
-	public void passaGlobal(LinkedList<Processo> global) throws InterruptedException {
-		this.global = global;
-		entregaEscalonador();
+	
+	public void copiaGlobal (LinkedList<Processo> global2) throws InterruptedException {
+		this.global = global2;
+		entregaEscalonador(this.global);
 
 	}
 
-	public void entregaEscalonador() throws InterruptedException {
+	public void entregaEscalonador(LinkedList<Processo> Global) throws InterruptedException {
 		Processo auxi = new Processo();
-		auxi = this.global.get(0);
+		auxi = global.get(0);
 		while (Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao){
 
 			if (temRecursos(auxi)){
@@ -42,11 +40,11 @@ public class Despachante {
 			global.remove(0);
 			auxi = global.get(0);
 		}
-		while (temProcessos()){
-			escalonador.nsoEscalonador.processoProntoDistribui(escalonador.nsoEscalonador.proximoPronto());
-		}
+		
 	}
-
+	
+	
+	
 
 	private void alocaRecursos(Processo processo) {
 		memoria.nsoMemoria.alocaMemoria(processo);
@@ -74,12 +72,9 @@ public class Despachante {
 	}
 
 	public void despachaProximo() throws InterruptedException {
-		try{
-			Cpu.nsoCpu.processar(escalonador.nsoEscalonador.escalonar());
-
-		} catch (Exception e) {
-			//Como não existe processo pronto na fila incrementamos a cpu.
-			Cpu.nsoCpu.cpuTime.incrementa();
+		while(this.global.size() >= 0){
+			escalonador.nsoEscalonador.mandaCpu();
+			
 		}
 	}
 
