@@ -49,6 +49,35 @@ public class Escalonador {
 			}
 		}
 	}	
+		
+	public void deBloqueadoParaPronto() throws InterruptedException {
+		Processo auxi = new Processo();
+		if (this.processosBloqueados.size() > 0){
+			auxi = this.processosBloqueados.get(0);
+		}
+		while ((Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao)&&(this.processosBloqueados.size()>0)){
+
+			if (despachante.nsoDespachante.temRecursos(auxi)){
+				despachante.nsoDespachante.alocaRecursos(auxi);
+				escalonador.nsoEscalonador.incluiComoPronto(auxi);
+				escalonador.nsoEscalonador.processoProntoDistribui(auxi);
+
+			} else {
+				escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
+			}
+
+
+			if (this.processosBloqueados.size()>0){
+				this.processosBloqueados.remove(0); 
+				auxi = this.processosBloqueados.get(0);
+				
+			}
+
+		}
+		
+	}
+
+	
 	
 	
 

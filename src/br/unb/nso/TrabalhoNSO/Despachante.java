@@ -43,32 +43,22 @@ public class Despachante {
 			if (global.size()>0){
 				this.global.remove(0); 
 				auxi = this.global.get(0);
-				 /*else {
-					auxi = null;
-				}*/
 				
 			}
-				
-				
-			if (this.global.size()>0){
-				auxi = this.global.get(0);
-			}
-
+			
 		}
-		
-		
-		
+				
 	}
 	
 	
 	
 
-	private void alocaRecursos(Processo processo) {
+	public void alocaRecursos(Processo processo) {
 		memoria.nsoMemoria.alocaMemoria(processo);
 		recursos.nsoRecursos.alocaRecursos(processo);
 	}
 
-	private boolean temRecursos(Processo processo) {
+	public boolean temRecursos(Processo processo) {
 
 		boolean bool = true;
 		if (!memoria.nsoMemoria.memoriaLivre(processo)) bool = false;

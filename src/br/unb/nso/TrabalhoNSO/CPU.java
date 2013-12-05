@@ -1,5 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
+import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 import br.unb.nso.TrabalhoNSO.Memoria.memoria;
 import br.unb.nso.TrabalhoNSO.Recursos.recursos;
 
@@ -47,7 +48,7 @@ public class CPU {
 		
 		recursos.nsoRecursos.liberaRecursos(o);
 		memoria.nsoMemoria.liberaMemoria(o);
-
+		escalonador.nsoEscalonador.deBloqueadoParaPronto();
 	}
 
 
