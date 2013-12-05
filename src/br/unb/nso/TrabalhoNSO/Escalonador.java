@@ -170,6 +170,33 @@ public class Escalonador {
 
 	}
 
+	public Processo proximoBloqueado() {
+		Processo retorno = processosBloqueados.get(0);
+		return retorno;
+	}
+
+	public void processoBloueadoDistribui(Processo proximoBloqueado) {
+		
+		System.out.printf("Distirbuido %s\n", proximoBloqueado.pid);
+		if (proximoBloqueado.prioridade == 0){			
+			escalonador.nsoEscalonador.processoTempoReal.add(proximoBloqueado);	
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
+		}		
+		if (proximoBloqueado.prioridade == 1){
+			escalonador.nsoEscalonador.processoUsuario1.add(proximoBloqueado);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
+		}
+		if (proximoBloqueado.prioridade == 2){
+			escalonador.nsoEscalonador.processoUsuario2.add(proximoBloqueado);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
+		}
+		if (proximoBloqueado.prioridade >= 3){
+			escalonador.nsoEscalonador.processoUsuario3.add(proximoBloqueado);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
+		}
+		
+	}
+
 
 
 }

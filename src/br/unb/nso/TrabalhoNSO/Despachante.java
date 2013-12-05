@@ -1,7 +1,7 @@
 package br.unb.nso.TrabalhoNSO;
 
 import java.util.LinkedList;
-import java.util.List;
+//import java.util.List;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 import br.unb.nso.TrabalhoNSO.Memoria.memoria;
@@ -81,6 +81,12 @@ public class Despachante {
 			}
 		}
 
+	}
+
+	public void desbloqueiaProximo(){
+			if (temRecursos(escalonador.nsoEscalonador.proximoBloqueado())){
+				escalonador.nsoEscalonador.processoBloueadoDistribui(escalonador.nsoEscalonador.proximoBloqueado());
+			}
 	}
 
 

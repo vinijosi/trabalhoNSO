@@ -1,5 +1,6 @@
 package br.unb.nso.TrabalhoNSO;
 
+import br.unb.nso.TrabalhoNSO.Despachante.despachante;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 /*
@@ -159,8 +160,7 @@ public class Memoria {
 		}
 		memoria.nsoMemoria.up();
 
-		// Criar metodo que chame o Despachante para incluir como pronto processos
-		//bloqueados
+		despachante.nsoDespachante.desbloqueiaProximo(); 
 	}
 
 	private void up() {
