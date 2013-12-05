@@ -2,7 +2,11 @@ package br.unb.nso.TrabalhoNSO;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.LinkedList;
+import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+import br.unb.nso.TrabalhoNSO.Despachante.despachante;
 
 public class Escalonador {
 
@@ -12,7 +16,7 @@ public class Escalonador {
 	private List<Processo> processoUsuario2;
 	private List<Processo> processoUsuario3;
 	private List<Processo> processosProntos;
-	private List<Processo> processosBloqueados;
+	private LinkedList<Processo> processosBloqueados;
 
 
 	interface escalonador {
@@ -25,9 +29,28 @@ public class Escalonador {
 		this.processoUsuario2 = new ArrayList<Processo>();
 		this.processoUsuario3 = new ArrayList<Processo>();
 		this.processosProntos = new ArrayList<Processo>();
-		this.processosBloqueados = new ArrayList<Processo>();
+		this.processosBloqueados = new LinkedList<Processo>();
 	}
 
+	public void mandaCpu () throws InterruptedException{		
+		if (proximoProntodasFilas() != null){	
+			while(proximoProntodasFilas() != null){			
+				Cpu.nsoCpu.processar(proximoProntodasFilas());
+			}
+		}
+		else{
+			if(processosBloqueados.size() > 0){
+				
+				despachante.nsoDespachante.entregaEscalonador(processosBloqueados);
+				
+			}
+			else{
+			Cpu.nsoCpu.cpuTime.incrementa();
+		
+			
+			}
+		}
+	}
 
 
 	public Processo escalonar(){
@@ -43,6 +66,7 @@ public class Escalonador {
 	public void incluiComoBloqueado(Processo novoProcesso){
 		escalonador.nsoEscalonador.processosBloqueados.add(novoProcesso);
 		System.out.printf("\nProcesso %s Incluido como Bloqueado\n", novoProcesso.pid);
+		Collections.sort(processosBloqueados);
 	}
 
 	public void processoProntoDistribui (Processo novoProcesso){
@@ -102,13 +126,16 @@ public class Escalonador {
 	 * */
 	public Processo verificaProximoProntodasFilas() {
 		Processo retorno = null;
-		if (processoTempoReal.size() > 0 && processoTempoReal.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		if (processoTempoReal.size() > 0 && processoTempoReal.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			retorno = escalonador.nsoEscalonador.processoTempoReal.get(0);
-		} else	if (processoUsuario1.size() > 0 && processoUsuario1.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		}
+		if (processoUsuario1.size() > 0 && processoUsuario1.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			retorno = escalonador.nsoEscalonador.processoUsuario1.get(0);
-		} else	if (processoUsuario2.size() > 0 && processoUsuario2.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		} 
+		if (processoUsuario2.size() > 0 && processoUsuario2.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			retorno = escalonador.nsoEscalonador.processoUsuario2.get(0);
-		} else	if (processoUsuario3.size() > 0 && processoUsuario3.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		}
+		if (processoUsuario3.size() > 0 && processoUsuario3.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			retorno = escalonador.nsoEscalonador.processoUsuario3.get(0);
 		}
 		return retorno;
@@ -122,16 +149,20 @@ public class Escalonador {
 	 * */
 	public Processo proximoProntodasFilas() {
 		Processo proxPronto = new Processo();
-		if (processoTempoReal.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		proxPronto = null;
+		if (this.processoTempoReal.size() > 0 && this.processoTempoReal.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			proxPronto = escalonador.nsoEscalonador.processoTempoReal.get(0);
 			escalonador.nsoEscalonador.processoTempoReal.remove(0);
-		} else	if (processoUsuario1.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		}
+		if (this.processoUsuario1.size() > 0 && this.processoUsuario1.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			proxPronto = escalonador.nsoEscalonador.processoUsuario1.get(0);
 			escalonador.nsoEscalonador.processoUsuario1.remove(0);
-		} else	if (processoUsuario2.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		} 
+		if (this.processoUsuario2.size() > 0 && this.processoUsuario2.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			proxPronto = escalonador.nsoEscalonador.processoUsuario2.get(0);
 			escalonador.nsoEscalonador.processoUsuario2.remove(0);
-		} else	if (processoUsuario3.get(0).tempoInicializacao == CPU.Cpu.nsoCpu.cpuTime.relogio){
+		}
+		if (this.processoUsuario3.size() > 0 && this.processoUsuario3.get(0).tempoInicializacao <= CPU.Cpu.nsoCpu.cpuTime.relogio){
 			proxPronto = escalonador.nsoEscalonador.processoUsuario3.get(0);
 			escalonador.nsoEscalonador.processoUsuario3.remove(0);
 		}
