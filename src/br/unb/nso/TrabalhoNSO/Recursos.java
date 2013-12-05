@@ -95,7 +95,6 @@ public class Recursos {
 	public void setModem(int pid) {
 		modem = pid;
 	}
-	private void down(int recurso) {
-		
-	}
+	//private void down(int recurso) {
+	//}
 }
