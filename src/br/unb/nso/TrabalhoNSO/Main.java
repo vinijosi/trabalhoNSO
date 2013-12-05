@@ -27,10 +27,10 @@ public class Main {
 		 * */
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
-		//Despachante despachante = new Despachante();
-		despachante.nsoDespachante.passaGlobal(global);
-		//despachante.passaGlobal(global);
+		despachante.nsoDespachante.copiaGlobal(global);
 		despachante.nsoDespachante.entregaEscalonador();
+		despachante.nsoDespachante.despachaProximo();
+
 	}
 
 	
@@ -42,7 +42,7 @@ public class Main {
 	private static LinkedList<Processo> leArquivo() {
 
 		//Dinamico implementar funcao para ler o arquivo 
-		String endereco = "processosPequeno.txt";
+		String endereco = "processos.txt";
 		LinkedList<Processo> lista = new LinkedList<Processo>() ;
 
 		/*
