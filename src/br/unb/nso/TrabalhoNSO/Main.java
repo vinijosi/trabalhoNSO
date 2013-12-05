@@ -124,6 +124,7 @@ public class Main {
 		while(noTemporal.hasNext()){
 			
 			System.out.printf(
+					"PID: %s\n" +
 					"Tempo de Inicializacao: %s\n" +
 					"Prioridade do Processo: %s\n" +
 					"Tempo de Execucao: %s\n" +
@@ -132,7 +133,7 @@ public class Main {
 					"Scanner: %s\n" +
 					"Modem: %s\n" +
 					"Disco: %s\n\n"
-					, no.tempoInicializacao, no.prioridade, no.tempoExecucao, no.blocosMemoria, no.impressora, no.scanner, no.modem, no.disco);
+					,no.pid, no.tempoInicializacao, no.prioridade, no.tempoExecucao, no.blocosMemoria, no.impressora, no.scanner, no.modem, no.disco);
 		
 			no = noTemporal.next();
 		}
