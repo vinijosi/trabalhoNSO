@@ -26,8 +26,10 @@ public class Despachante {
 
 	public void entregaEscalonador() throws InterruptedException {
 		Processo auxi = new Processo();
-		auxi = this.global.get(0);
-		while ((Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao)&&(auxi !=null)){
+		if (global.size() > 0){
+			auxi = this.global.get(0);
+		}
+		while ((Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao)&&(global.size()>0)){
 
 			if (temRecursos(auxi)){
 				alocaRecursos(auxi);
@@ -39,11 +41,12 @@ public class Despachante {
 
 			if (global.size()>0){
 				this.global.remove(0); 
-				if (global.size()>0){
+				if (global.size() > 0){
 					auxi = this.global.get(0);
-				} else {
+				} /*else {
 					auxi = null;
-				}
+				}*/
+				
 			}
 
 		}
