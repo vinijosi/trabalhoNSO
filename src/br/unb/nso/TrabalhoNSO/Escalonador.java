@@ -45,7 +45,7 @@ public class Escalonador {
 				
 			}
 			else{
-			Cpu.nsoCpu.cpuTime.incrementa();
+				Cpu.nsoCpu.cpuTime.incrementa();
 			}
 		}
 	}	
@@ -180,19 +180,19 @@ public class Escalonador {
 		System.out.printf("Distirbuido %s\n", proximoBloqueado.pid);
 		if (proximoBloqueado.prioridade == 0){			
 			escalonador.nsoEscalonador.processoTempoReal.add(proximoBloqueado);	
-			//escalonador.nsoEscalonador.processosBloqueados.remove(0);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
 		}		
 		if (proximoBloqueado.prioridade == 1){
 			escalonador.nsoEscalonador.processoUsuario1.add(proximoBloqueado);
-			//escalonador.nsoEscalonador.processosBloqueados.remove(0);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
 		}
 		if (proximoBloqueado.prioridade == 2){
 			escalonador.nsoEscalonador.processoUsuario2.add(proximoBloqueado);
-			//escalonador.nsoEscalonador.processosBloqueados.remove(0);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
 		}
 		if (proximoBloqueado.prioridade >= 3){
 			escalonador.nsoEscalonador.processoUsuario3.add(proximoBloqueado);
-			//escalonador.nsoEscalonador.processosBloqueados.remove(0);
+			escalonador.nsoEscalonador.processosBloqueados.remove(0);
 		}
 		
 	}

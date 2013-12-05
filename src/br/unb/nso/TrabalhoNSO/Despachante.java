@@ -42,14 +42,13 @@ public class Despachante {
 
 			if (global.size()>0){
 				this.global.remove(0); 
-				if (global.size() > 0){
-					auxi = this.global.get(0);
-				} /*else {
+				auxi = this.global.get(0);
+				 /*else {
 					auxi = null;
 				}*/
 				
 			}
-				this.global.remove();
+				
 				
 			if (this.global.size()>0){
 				auxi = this.global.get(0);
