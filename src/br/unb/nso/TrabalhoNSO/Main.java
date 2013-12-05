@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import br.unb.nso.TrabalhoNSO.CPU.Cpu;
+import br.unb.nso.TrabalhoNSO.Despachante.despachante;
 import br.unb.nso.TrabalhoNSO.Escalonador.escalonador;
 
 
@@ -26,9 +27,9 @@ public class Main {
 		 * */
 		
 		//int tempo = Cpu.nsoCpu.cpuTime.relogio;
-		Despachante despachante = new Despachante();
-		despachante.passaGlobal(global);
-		despachante.entregaEscalonador();
+		despachante.nsoDespachante.copiaGlobal(global);
+		despachante.nsoDespachante.entregaEscalonador(global);
+		despachante.nsoDespachante.despachaProximo();
 	}
 
 	
@@ -40,7 +41,7 @@ public class Main {
 	private static LinkedList<Processo> leArquivo() {
 
 		//Dinamico implementar funcao para ler o arquivo 
-		String endereco = "processosPequeno.txt";
+		String endereco = "processos.txt";
 		LinkedList<Processo> lista = new LinkedList<Processo>() ;
 
 		/*
