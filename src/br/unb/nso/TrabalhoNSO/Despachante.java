@@ -49,10 +49,6 @@ public class Despachante {
 				}*/
 				
 			}
-
-
-			
-				
 				this.global.remove();
 				
 			if (this.global.size()>0){
