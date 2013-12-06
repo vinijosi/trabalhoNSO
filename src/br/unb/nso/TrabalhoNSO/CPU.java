@@ -55,8 +55,8 @@ public class CPU {
 			 * 
 			 * */
 			
-			
-			if (/*(o.prioridade != 0)&&*/(escalonador.nsoEscalonador.proximoProntodasFilas().prioridade == 0)){
+			Processo aux = escalonador.nsoEscalonador.proximoProntodasFilas();
+			if (/*(o.prioridade != 0)&&*/aux!=null && (aux.prioridade == 0)){
 				processoPreemptado = o;
 				System.out.printf("\n\t\t\t\t\t\t\t\tProcesso PID(%s) preemptado\n",o.pid);
 				Cpu.nsoCpu.processarPreemptado(escalonador.nsoEscalonador.proximoProntodasFilas());

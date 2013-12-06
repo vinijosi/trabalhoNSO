@@ -28,24 +28,28 @@ public class Despachante {
 		if (global.size() > 0){
 			auxi = this.global.get(0);
 		}
-		while ((Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao)&&(global.size()>0)){
+		try {
+			while ((Cpu.nsoCpu.cpuTime.relogio == auxi.tempoInicializacao)&&(global.size()>0)){
 
-			if (temRecursos(auxi)){
-				alocaRecursos(auxi);
-				escalonador.nsoEscalonador.incluiComoPronto(auxi);
-				escalonador.nsoEscalonador.processoProntoDistribui(auxi);
+				if (temRecursos(auxi)){
+					alocaRecursos(auxi);
+					escalonador.nsoEscalonador.incluiComoPronto(auxi);
+					escalonador.nsoEscalonador.processoProntoDistribui(auxi);
 
-			} else {
-				escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
-			}
+				} else {
+					escalonador.nsoEscalonador.incluiComoBloqueado(auxi);
+				}
 
 
-			if (global.size()>0){
-				this.global.remove(0); 
-				auxi = this.global.get(0);
+				if (global.size()>0){
+					this.global.remove(0); 
+					auxi = this.global.get(0);
+					
+				}
 				
 			}
-			
+		} catch (Exception e) {
+			System.out.println("Fim dos processos do arquivo");
 		}
 				
 	}
